@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-1.0.0 - LineStatus</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/1.0.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/1.0.0">
+            <strong>
+                TalkSDK-1.0.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="variable"><a href="#linestatus.agentavailable">agent​Available</a></li><li class="variable"><a href="#linestatus.recordingconsent">recording​Consent</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Line​Status</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">LineStatus</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Comprehensive information about status of digital line.</p>
+
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="variable" id="linestatus.agentavailable">
+    <h3>
+        <code>agent​Available</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">agentAvailable</span>: <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Boolean flag which should be used to determine whether the &quot;call us button&quot; should be visible to end user.
+Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or no agent is available.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="linestatus.recordingconsent">
+    <h3>
+        <code>recording​Consent</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">recordingConsent</span>: <a href="/talk_sdk_ios/1.0.0/RecordingConsent"><span class="type">RecordingConsent</span></a></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Digital line's current recording and recording consent configuration.
+Using value of this property the end user may be allowed for opting-in or opting-out from call recording.
+If the <strong>recordingConsent</strong> is <code>unknown</code> it means that end user does not need to opt-in or opt-out from call recording.
+At the same time the <code>unknown</code> value does not provide any information whether the call will be recorded or not.
+With the <code>unknown</code> value, all configuration is handled server side.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-24T12:38:24+0100">24 November 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

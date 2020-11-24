@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-1.0.0 - CallTimerView</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/1.0.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/1.0.0">
+            <strong>
+                TalkSDK-1.0.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="variable"><a href="#calltimerview.titlelabel">title​Label</a></li><li class="variable"><a href="#calltimerview.timerlabel">timer​Label</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Call​Timer​View</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">CallTimerView</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Represent the timer view with a label showing call's duration.</p>
+
+</div>
+<div class="discussion">
+    <p>The view is shown when a call is in progress with the title <code>Call in progress</code> and an automatically updated timer label showing call's duration in seconds.
+On that screen you can change the font, text colors, background color, etc.</p>
+
+<aside class="important">
+    <p>You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.</p>
+
+</aside>
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="variable" id="calltimerview.titlelabel">
+    <h3>
+        <code>title​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">titleLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="calltimerview.timerlabel">
+    <h3>
+        <code>timer​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">timerLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Label displaying call duration in seconds. Refreshed every second.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-24T12:38:24+0100">24 November 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>
