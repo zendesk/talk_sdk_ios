@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-1.0.0 - MicrophonePermissionScreen</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/docs/1.0.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/docs/1.0.0">
+            <strong>
+                TalkSDK-1.0.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="variable"><a href="#microphonepermissionscreen.backgroundcolor">background​Color</a></li><li class="variable"><a href="#microphonepermissionscreen.titlelabel">title​Label</a></li><li class="variable"><a href="#microphonepermissionscreen.messagelabel">message​Label</a></li><li class="variable"><a href="#microphonepermissionscreen.allowbutton">allow​Button</a></li><li class="variable"><a href="#microphonepermissionscreen.cancelbutton">cancel​Button</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Microphone​Permission​Screen</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">MicrophonePermissionScreen</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Screen handling microphone permission configuration.</p>
+
+</div>
+<div class="discussion">
+    <p>This screen checks and requests microphone permission. If there was no check before, it will show a system alert asking for permission. If there was a check and the microphone access was denied, it will show an alert asking user to turn on permission in Settings. If the microphone permission were already granted the screen is not presented.</p>
+
+<aside class="important">
+    <p>Please remember about adding <code>NSMicrophoneUsageDescription</code> into your app's <code>Info.plist</code> file with description.</p>
+
+</aside>
+<aside class="important">
+    <p>You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.</p>
+
+</aside>
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="variable" id="microphonepermissionscreen.backgroundcolor">
+    <h3>
+        <code>background​Color</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">backgroundColor</span>: <span class="type">UIColor</span>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Background color of the screen container.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="microphonepermissionscreen.titlelabel">
+    <h3>
+        <code>title​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">titleLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Label which shows main title. Example: 'Allow microphone'.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="microphonepermissionscreen.messagelabel">
+    <h3>
+        <code>message​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">messageLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Label which shows description message under the title label.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="microphonepermissionscreen.allowbutton">
+    <h3>
+        <code>allow​Button</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">allowButton</span>: <span class="type">UIButton</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Allow Button that opens an alert asking user about microphone permission. In case permission is already granted, calls <code>requestPermissionCompletion</code>.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="microphonepermissionscreen.cancelbutton">
+    <h3>
+        <code>cancel​Button</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">cancelButton</span>: <span class="type">UIButton</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Cancel Button which cancels all the flow and call <code>cancelHandler</code>.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-11-25T09:47:59+0100">25 November 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

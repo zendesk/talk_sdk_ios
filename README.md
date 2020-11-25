@@ -6,7 +6,9 @@ Zendesk Talk SDK is a quick, convenient way to get live digital voice calls into
 
 ## Documentation
 
-You can find our documentation on https://developer.zendesk.com/embeddables.
+You can find our documentation on https://developer.zendesk.com/embeddables/docs/talk-sdk-ios/introduction
+
+The latest API docs can be found on https://zendesk.github.io/talk_sdk_ios/docs/
 
 ## Feature requests and issues
 
