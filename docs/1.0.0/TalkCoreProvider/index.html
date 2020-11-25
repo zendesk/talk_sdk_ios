@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TalkSDK-1.0.0 - TalkCoreProvider</title>
-    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/1.0.0/all.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/docs/1.0.0/all.css" media="all" />
 </head>
 <body>
     <header>
-        <a href="/talk_sdk_ios/1.0.0">
+        <a href="/talk_sdk_ios/docs/1.0.0">
             <strong>
                 TalkSDK-1.0.0
             </strong>
@@ -64,14 +64,14 @@
 <!-- TalkCoreProvider -->
 <g id="node1" class="node protocol current">
 <title>TalkCoreProvider</title>
-<g id="a_node1"><a xlink:href="/talk_sdk_ios/1.0.0/TalkCoreProvider" xlink:title="TalkCoreProvider">
+<g id="a_node1"><a xlink:href="/talk_sdk_ios/docs/1.0.0/TalkCoreProvider" xlink:title="TalkCoreProvider">
 <path fill="none" stroke="black" stroke-width="3" d="M816,-108C816,-108 624,-108 624,-108 618,-108 612,-102 612,-96 612,-96 612,-84 612,-84 612,-78 618,-72 624,-72 624,-72 816,-72 816,-72 822,-72 828,-78 828,-84 828,-84 828,-96 828,-96 828,-102 822,-108 816,-108"/>
 <text text-anchor="middle" x="720" y="-86.3" font-family="Menlo" font-size="14.00">TalkCoreProvider</text>
 </a>
 </g>
 </g>
 <!-- AnyObject -->
-<g id="node2" class="node unknown">
+<g id="node3" class="node unknown">
 <title>AnyObject</title>
 <path fill="none" stroke="black" d="M816,-36C816,-36 624,-36 624,-36 618,-36 612,-30 612,-24 612,-24 612,-12 612,-12 612,-6 618,0 624,0 624,0 816,0 816,0 822,0 828,-6 828,-12 828,-12 828,-24 828,-24 828,-30 822,-36 816,-36"/>
 <text text-anchor="middle" x="720" y="-14.3" font-family="Menlo" font-size="14.00">AnyObject</text>
@@ -83,9 +83,9 @@
 <polygon fill="black" stroke="black" points="723.5,-46.1 720,-36.1 716.5,-46.1 723.5,-46.1"/>
 </g>
 <!-- Talk -->
-<g id="node3" class="node class">
+<g id="node2" class="node class">
 <title>Talk</title>
-<g id="a_node3"><a xlink:href="/talk_sdk_ios/1.0.0/Talk" xlink:title="Talk">
+<g id="a_node2"><a xlink:href="/talk_sdk_ios/docs/1.0.0/Talk" xlink:title="Talk">
 <path fill="none" stroke="black" stroke-width="2" d="M816,-180C816,-180 624,-180 624,-180 618,-180 612,-174 612,-168 612,-168 612,-156 612,-156 612,-150 618,-144 624,-144 624,-144 816,-144 816,-144 822,-144 828,-150 828,-156 828,-156 828,-168 828,-168 828,-174 822,-180 816,-180"/>
 <text text-anchor="middle" x="720" y="-158.3" font-family="Menlo" font-size="14.00">Talk</text>
 </a>
@@ -109,7 +109,7 @@
 </dl>
 <h3>Types Conforming to <code>Talk​Core​Provider</code></h3>
 <dl>
-    <dt class="class"><code><a href="/talk_sdk_ios/1.0.0/Talk">Talk</a></code></dt>
+    <dt class="class"><code><a href="/talk_sdk_ios/docs/1.0.0/Talk">Talk</a></code></dt>
 <dd><p>An entry point into Talk SDK for iOS.</p>
 </dd>
 </dl>
@@ -124,7 +124,7 @@
     <h3>
         <code>line​Status(digital​Line:​completion:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">lineStatus</span>(<span class="variable">digitalLine</span>: <a href="/talk_sdk_ios/1.0.0/DigitalLine"><span class="type">DigitalLine</span></a>, <span class="variable">completion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">LineStatusResult</span>) -&gt; <span class="type">Void</span>)</code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">lineStatus</span>(<span class="variable">digitalLine</span>: <a href="/talk_sdk_ios/docs/1.0.0/DigitalLine"><span class="type">DigitalLine</span></a>, <span class="variable">completion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">LineStatusResult</span>) -&gt; <span class="type">Void</span>)</code></pre></body></html>
 <div class="summary" role="doc-abstract">
     <p>Provides asynchronous information about the status of a digital line associated with <code>digitalLine</code> name, as defined in Talk Settings.</p>
 
@@ -163,7 +163,7 @@
     <h3>
         <code>call(call​Data:​status​Change​Handler:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">call</span>(<span class="variable">callData</span>: <a href="/talk_sdk_ios/1.0.0/CallData"><span class="type">CallData</span></a>, <span class="variable">statusChangeHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> <span class="type">StatusChangeHandler</span>) -&gt; <a href="/talk_sdk_ios/1.0.0/TalkCall"><span class="type">TalkCall</span></a></code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">call</span>(<span class="variable">callData</span>: <a href="/talk_sdk_ios/docs/1.0.0/CallData"><span class="type">CallData</span></a>, <span class="variable">statusChangeHandler</span>: <span class="attribute">@</span><span class="attribute">escaping</span> <span class="type">StatusChangeHandler</span>) -&gt; <a href="/talk_sdk_ios/docs/1.0.0/TalkCall"><span class="type">TalkCall</span></a></code></pre></body></html>
 <div class="summary" role="doc-abstract">
     <p>Initializes a call for provided call data.</p>
 
@@ -211,7 +211,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2020-11-24T12:38:25+0100">24 November 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2020-11-25T09:47:59+0100">25 November 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
 </p>
     </footer>
 </body>
