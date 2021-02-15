@@ -189,6 +189,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import AVFoundation;
+@import AVKit;
 @import Foundation;
 @import ObjectiveC;
 @import QuartzCore;
@@ -213,12 +214,38 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
-/// Describes possible options for playing the audio while call is active.
+enum AudioRoutingType : NSInteger;
+
+/// Describes possible options for routing call’s audio input and output.
+SWIFT_PROTOCOL("_TtP7TalkSDK18AudioRoutingOption_")
+@protocol AudioRoutingOption
+/// Localized name of the routing option.
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// Type of audio routing option.
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+
+@interface AVAudioSessionPortDescription (SWIFT_EXTENSION(TalkSDK)) <AudioRoutingOption>
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+/// Describes possible options for audio playback during the call.
 typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 /// The call audio will be routed through the speakers.
   AudioOutputSpeaker = 0,
-/// The call audio will be routed through the headsets.
+/// The call audio will be routed through the headset.
   AudioOutputHeadset = 1,
+};
+
+
+/// Describes type of an audio routing option.
+typedef SWIFT_ENUM(NSInteger, AudioRoutingType, open) {
+/// Used for routing option using built-in speakers and microphone.
+  AudioRoutingTypeBuiltIn = 0,
+/// Used for routing option using bluetooth connectivity.
+  AudioRoutingTypeBluetooth = 1,
 };
 
 
@@ -229,15 +256,23 @@ typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 @class UILabel;
 
 /// Represent the bottom buttons view in call screen.
-/// This view contains all three buttons for mute, change audio source and hang up.
-/// The view contains buttons and title labels
+/// This view contains buttons for: mute, change audio source and hang up actions.
+/// The view contains buttons and matching title labels.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 /// note:
 /// Labels with text under the buttons are not the part of the buttons.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol CallButtonsView
-/// Button for changing the <code>AudioSource</code> between <code>headset</code> and <code>speaker</code>.
+/// Button for changing the ongoing call’s audio configuration. It operates differently depending on Bluetooth enabled headsets being connnected to the device:
+/// <ul>
+///   <li>
+///     By default it toggles the audio output between <code>headset</code> and <code>speaker</code>.
+///   </li>
+///   <li>
+///     When Bluetooth headset is available the button displays picker for changing the audio routing.
+///   </li>
+/// </ul>
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified speakerButton;
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified speakerTitleLabel;
 /// Button for disconnecting the call.
@@ -252,8 +287,8 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol RecordingConsentScreen;
 enum RecordingConsentAnswer : NSInteger;
 
-/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
-/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc. and presents appropriate UI:
+/// A screen presented before making a call, used to ask the user about necessary permissions that need to be granted.
+/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc., and presents the appropriate UI:
 /// <code>Microphone screen</code> view is presented if microphone permission is not granted
 /// <code>Recording Consent Screen</code> view is presented only if <code>Recording Consent</code> configuration for the provided <code>Digital Line</code> is set to <code>optIn</code> or <code>optOut</code>. If during fetching of the configuration error occurs, the <code>Error View</code> will be shown.
 /// important:
@@ -264,18 +299,19 @@ enum RecordingConsentAnswer : NSInteger;
 /// \endcodeThis screen will not be dismissed automatically. You need to provide the functionality on <code>cancelHandler</code> and <code>startCallHandler</code> handlers.
 SWIFT_PROTOCOL("_TtP7TalkSDK23CallConfigurationScreen_")
 @protocol CallConfigurationScreen
-/// Container for UI elements shown as Microphone permission screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Microphone permission screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
-/// Container for UI elements shown as Recording Consent screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Recording Consent screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <RecordingConsentScreen> _Nonnull recordingConsentScreen;
-/// The handler which will be called when user will cancel the configuration at any time.
+/// Handler that is called when end user cancels the configuration at any time.
 @property (nonatomic, copy) void (^ _Nullable cancelHandler)(void);
-/// After successfull configuration finished the handler will be called with user’s <code>RecordingConsentAnswer</code>.
+/// Handler called after completing the configuration, it will be called with user’s <code>RecordingConsentAnswer</code>.
 @property (nonatomic, copy) void (^ _Nullable startCallHandler)(enum RecordingConsentAnswer);
 @end
 
 @class NSCoder;
 
+/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
 SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @interface CallConfigurationViewController : UIViewController <CallConfigurationScreen>
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
@@ -289,29 +325,21 @@ SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @end
 
 
-/// Represents all data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// Represents all required parameters to make a call.
 SWIFT_PROTOCOL("_TtP7TalkSDK8CallData_")
 @protocol CallData
-/// Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
+/// Name of digital line configured by the admin in Talk Settings.
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
-/// Instruction about recording the call
+/// Answer received from end user about recording the call.
 @property (nonatomic, readonly) enum RecordingConsentAnswer recordingConsentAnswer;
 @end
 
 
-/// Represent the error view with <code>retry</code> and <code>cancel</code> button.
-/// <code>CallErrorView</code> is visible when starting call was failed. The screen will be showed on full screen.
+/// Represent the error view with <code>retry</code> and <code>cancel</code> buttons.
+/// <code>CallErrorView</code> is visible when starting a call has failed. The screen will is shown full screen.
 /// On that screen you can change fonts, text colors, background colors, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 @protocol CallErrorView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -326,10 +354,10 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 
 /// Represent the loading view with activity indicator on the call screen.
 /// When starting a call the SDK needs to prepare the call configuration.
-/// At this time on the <code>Call Screen</code> an activity indicator with title is shown.
+/// At this time on the <code>CallScreen</code> an activity indicator with a title is shown.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @protocol CallLoadingView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -339,7 +367,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @class UIView;
 @protocol CallTimerView;
 
-/// A view controller that displayed for an ongoing call.
+/// A screen presented for an ongoing call.
 /// This screen is shown during the all states of call (<code>starting</code>, <code>in progress</code>, <code>fail</code>, etc).
 /// It contains various sub-views related to displaying info depending on call state.
 /// note:
@@ -355,13 +383,13 @@ SWIFT_PROTOCOL("_TtP7TalkSDK10CallScreen_")
 /// View containing call screen action buttons.
 @property (nonatomic, readonly, strong) UIView <CallButtonsView> * _Nonnull callButtonsView;
 /// Disconnects the call.
-/// It is possible to manually disconnect the call from every state of the call. After disconnecting the <code>callDidFinishHandler</code> is called.
+/// It is possible to manually disconnect the call from every state of the call. After disconnecting, the <code>callDidFinishHandler</code> is called.
 - (void)disconnect;
 @end
 
-/// Represents all possible states in which the call can be
+/// Represents all possible states of the call.
 typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
-/// The call is connecting
+/// The call is connecting.
   CallStatusConnecting = 0,
 /// The call has been connected.
   CallStatusConnected = 1,
@@ -376,11 +404,11 @@ typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
 };
 
 
-/// Represent the timer view with time counter.
-/// The view is shown when call is on progress with title <code>Call in progress</code> and automatic timer in seconds.
-/// On that screen you can change font, text colors, background color, etc.
+/// Represent the timer view with a label showing call’s duration.
+/// The view is shown when a call is in progress with the title <code>Call in progress</code> and an automatically updated timer label showing call’s duration in seconds.
+/// On that screen you can change the font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @protocol CallTimerView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -389,6 +417,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @end
 
 
+/// A view controller displayed for an ongoing call.
 SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 @interface CallViewController : UIViewController <CallScreen>
 @property (nonatomic, readonly, strong) UIView <CallLoadingView> * _Nonnull callLoadingView;
@@ -403,61 +432,69 @@ SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
+@class AVRoutePickerView;
+
+SWIFT_AVAILABILITY(ios,introduced=11.0)
+@interface CallViewController (SWIFT_EXTENSION(TalkSDK)) <AVRoutePickerViewDelegate>
+- (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+- (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+@end
+
 enum RecordingConsent : NSInteger;
 
-/// Comprehensive information about status of linked line.
+/// Comprehensive information about status of digital line.
 SWIFT_PROTOCOL("_TtP7TalkSDK10LineStatus_")
 @protocol LineStatus
 /// Boolean flag which should be used to determine whether the “call us button” should be visible to end user.
-/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or agent is busy.
+/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or no agent is available.
 @property (nonatomic, readonly) BOOL agentAvailable;
-/// Property which should be optionally used to allow end user from opting-in or opting-out from call recording.
+/// Digital line’s current recording and recording consent configuration.
+/// Using value of this property the end user may be allowed for opting-in or opting-out from call recording.
 /// If the <em>recordingConsent</em> is <code>unknown</code> it means that end user does not need to opt-in or opt-out from call recording.
 /// At the same time the <code>unknown</code> value does not provide any information whether the call will be recorded or not.
-/// With the <code>unknown</code> value, all configuration are handled in server side.
+/// With the <code>unknown</code> value, all configuration is handled server side.
 @property (nonatomic, readonly) enum RecordingConsent recordingConsent;
 @end
 
 @class UIColor;
 
-/// Represents the Microphone permission screen.
-/// This Screen contains checking and requesting microphone permission. If there was not checks before, it will show systems alert asking about permission. If there was check already, it will show the alert with asking user to turn on permission on <code>Settings</code>.
+/// Screen handling microphone permission configuration.
+/// This screen checks and requests microphone permission. If there was no check before, it will show a system alert asking for permission. If there was a check and the microphone access was denied, it will show an alert asking user to turn on permission in Settings. If the microphone permission were already granted the screen is not presented.
 /// important:
 /// Please remember about adding <code>NSMicrophoneUsageDescription</code> into your app’s <code>Info.plist</code> file with description.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK26MicrophonePermissionScreen_")
 @protocol MicrophonePermissionScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: ‘Allow microphone’).
+/// Label which shows main title. Example: ‘Allow microphone’.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Allow Button which will open alert with asking user about microphone permission. In case permission already <code>granted</code> will call. <code>requestPermissionCompletion</code>
+/// Allow Button that opens an alert asking user about microphone permission. In case permission is already granted, calls <code>requestPermissionCompletion</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified allowButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and call <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 @end
 
 
 
-/// Represents status of recording consent.
-/// Enum cases corresponds to all possible actions end user can take in the application.
+/// Represents digital line’s recording consent configuration.
 typedef SWIFT_ENUM(NSInteger, RecordingConsent, open) {
-/// Call recording is disabled by default, but the end-user has the option to opt-in
+/// Call recording is disabled by default, but the end user has the option to opt-in
   RecordingConsentOptIn = 0,
-/// Call recording is enabled by default, but the end-user has the option to opt-out
+/// Call recording is enabled by default, but the end user has the option to opt-out
   RecordingConsentOptOut = 1,
-/// Call recording is not defined on a Talk settings
+/// Call recording is not defined in Talk settings
   RecordingConsentUnknown = 2,
 };
 
-/// Represents the answer received from end-user about recording the call.
+/// Represents the answer received from end user about recording the call.
 typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
-/// Default setting was to not record the call, however end-user opted in for recording the call.
+/// Even if the default setting is not to record the call, end user opted in for recording the call.
   RecordingConsentAnswerOptedIn = 0,
-/// Default setting was to record the call, however end-user opted-out from recording the call.
+/// Even if the default setting was to record the call, the end user opted-out from recording the call.
   RecordingConsentAnswerOptedOut = 1,
 /// User did not provide answer about recording the call.
   RecordingConsentAnswerUnknown = 2,
@@ -465,31 +502,31 @@ typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
 
 @class UISwitch;
 
-/// Represents the Recording Consent screen.
+/// Screen handling recording consent.
 /// The screen contains all UI elements of the view.
-/// It’s shown when the <code>Recording Consent</code> received from <code>lineStatus</code> has value of: <code>optIn</code> or <code>optOut</code>. Otherwise the no answer is necessary and the screen is not presented.
+/// It is shown only when the <code>Recording Consent</code> received from <code>lineStatus</code> has a value of <code>optIn</code> or <code>optOut</code>. Otherwise no user’s answer is required and the screen is not presented.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK22RecordingConsentScreen_")
 @protocol RecordingConsentScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: “Recording this call”).
+/// Label which shows main title. Example: “Recording this call”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Button which will call <code>startCallHandler</code> handler.
+/// Button which calls <code>startCallHandler</code> handler.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified startCallButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and calls <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 /// The view which contains consent <code>UISwitch</code> and description label.
 @property (nonatomic, readonly, strong) UIView * _Null_unspecified consentSwitchView;
-/// Switch which will reflect user’s <code>RecordingConsentAnswer</code>.  Switch On will equal to <code>.optIn</code>, Switch Off - <code>.optOut</code>.
+/// Switch which reflects user’s <code>RecordingConsentAnswer</code>. The <code>on</code> state equals to <code>.optIn</code>, and <code>off</code> state to <code>.optOut</code>.
 @property (nonatomic, readonly, strong) UISwitch * _Null_unspecified consentSwitch;
-/// Label which message regarding uiswitch. (ex: “I agree to this call being recorder”)
+/// Label which message regarding uiswitch. Example: “I agree to this call being recorder”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified consentDescriptionLabel;
-/// Indicator which is shown when fetching RecordingConsent
+/// Indicator which is shown when fetching digital line’s recording consent configuration.
 @property (nonatomic, readonly, strong) UIActivityIndicatorView * _Null_unspecified activityIndicatorView;
 @end
 
@@ -509,26 +546,26 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-
-
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Returns Call Configuration view controller
-/// Before making a call you need to make sure use has granted all required permissions. You can achieve this using provided configuration view controller
+/// Before making a call you need to make sure user has granted all required permissions. You can use this provided view controller for checking and asking for the permissions and validating all states.
 /// important:
-/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: cancelHandler for the view controller’s dismissal and startCallHandler for presenting the call view controller and starting a call.
+/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: <code>cancelHandler</code> for the view controller’s dismissal and <code>startCallHandler</code> for presenting the call view controller and starting a call.
 /// \param digitalLine A nickname of a digital line for which the configuration will be displayed.
 ///
 ///
 /// returns:
-/// <code>UIViewController</code> with configured components and flow.
+/// <code>CallConfigurationScreenViewController</code>, which is a <code>CallConfigurationScreen</code> conforming <code>UIViewController</code> with configured components and flow.
 - (UIViewController <CallConfigurationScreen> * _Nonnull)makeCallConfigurationViewControllerFor:(NSString * _Nonnull)digitalLine SWIFT_WARN_UNUSED_RESULT;
 @end
+
+
 
 @protocol TalkCall;
 
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Provides asynchronous information about status of line associated with <code>digitalLine</code> in Talk Settings.
-/// For more information about line status look on the <code>LineStatus</code> documentation.
+/// For more information about line status, see the <code>LineStatus</code> documentation.
 /// \param digitalLine name of digital line configured by the admin in Talk Settings
 ///
 /// \param completion return <code>Result</code> with <code>LineStatus</code> for success status or <code>NSError</code> for fail.
@@ -570,36 +607,32 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-/// Represents call created by Talk SDK.
-/// Responsibility of this class is to provide set of basic operations connected to the call,
-/// like muting, disconnecting or changing audio output type.
+/// Represents a call created by Talk SDK.
+/// Responsibility of this class is to provide set of basic operations related to the ongoing call, like muting, disconnecting or changing audio output type.
 SWIFT_PROTOCOL("_TtP7TalkSDK8TalkCall_")
 @protocol TalkCall
 /// Property that defines if the call is muted.
 /// Mutes or un-mutes the call depending on the value of <em>muted</em>.
 /// Default value is <code>false</code>.
 @property (nonatomic) BOOL muted;
-/// Property that shows duration of call in miliseconds.
-/// Default value is <code>0</code>. It will be <code>0</code> until call will not be started.
+/// Property that shows duration of call in seconds.
+/// Default value is <code>0</code>. It will be <code>0</code> until the call is started.
 @property (nonatomic, readonly) NSTimeInterval duration;
 /// Ends the ongoing call.
-/// If the call was not disconnected before then <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>
-/// If the call was already disconnected then <code>TalkProvider.call.onStatusChange</code> will not be called
+/// If the call was not disconnected before - then the <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>.
+/// If the call was already disconnected - then the <code>TalkProvider.call.onStatusChange</code> will not be called.
 - (void)disconnect;
 /// Device specified audio output.
+/// Default value is <code>AudioOutput.headset</code>.
 @property (nonatomic) enum AudioOutput audioOutput;
+/// Current audio routing for call’s audio input and output.
+@property (nonatomic, strong) id <AudioRoutingOption> _Nullable audioRouting;
+/// List of all currently available audio routing options provided by the device.
+@property (nonatomic, readonly, copy) NSArray<id <AudioRoutingOption>> * _Nonnull availableAudioRoutingOptions;
 @end
 
 
-/// The class conforming <code>CallData</code> -the data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// <code>CallData</code> conforming class that represents parameters required to make a call.
 SWIFT_CLASS_NAMED("TalkCallData")
 @interface ZDKTalkCallData : NSObject <CallData>
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
@@ -609,15 +642,15 @@ SWIFT_CLASS_NAMED("TalkCallData")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-/// Represents failed state when trying to create<code>CallSummary</code> object.
+/// Represents errors occuring for a <code>failed</code> or <code>disconnected</code> call.
 typedef SWIFT_ENUM(NSInteger, TalkCallError, open) {
 /// No digital line was found with a provided name.
   TalkCallErrorDigitalLineNotFound = 0,
-/// Establishing the call was failed because of network issue
+/// Establishing the call failed because of network issues.
   TalkCallErrorNetworkError = 1,
 /// The app is not authorized to make a call.
   TalkCallErrorUnauthorized = 2,
-/// An unknown error occurred while establishing the call
+/// An unknown error occurred while establishing the call.
   TalkCallErrorUnknown = 3,
 };
 static NSString * _Nonnull const TalkCallErrorDomain = @"TalkSDK.TalkCallError";
@@ -838,6 +871,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import AVFoundation;
+@import AVKit;
 @import Foundation;
 @import ObjectiveC;
 @import QuartzCore;
@@ -862,12 +896,38 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
-/// Describes possible options for playing the audio while call is active.
+enum AudioRoutingType : NSInteger;
+
+/// Describes possible options for routing call’s audio input and output.
+SWIFT_PROTOCOL("_TtP7TalkSDK18AudioRoutingOption_")
+@protocol AudioRoutingOption
+/// Localized name of the routing option.
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// Type of audio routing option.
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+
+@interface AVAudioSessionPortDescription (SWIFT_EXTENSION(TalkSDK)) <AudioRoutingOption>
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+/// Describes possible options for audio playback during the call.
 typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 /// The call audio will be routed through the speakers.
   AudioOutputSpeaker = 0,
-/// The call audio will be routed through the headsets.
+/// The call audio will be routed through the headset.
   AudioOutputHeadset = 1,
+};
+
+
+/// Describes type of an audio routing option.
+typedef SWIFT_ENUM(NSInteger, AudioRoutingType, open) {
+/// Used for routing option using built-in speakers and microphone.
+  AudioRoutingTypeBuiltIn = 0,
+/// Used for routing option using bluetooth connectivity.
+  AudioRoutingTypeBluetooth = 1,
 };
 
 
@@ -878,15 +938,23 @@ typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 @class UILabel;
 
 /// Represent the bottom buttons view in call screen.
-/// This view contains all three buttons for mute, change audio source and hang up.
-/// The view contains buttons and title labels
+/// This view contains buttons for: mute, change audio source and hang up actions.
+/// The view contains buttons and matching title labels.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 /// note:
 /// Labels with text under the buttons are not the part of the buttons.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol CallButtonsView
-/// Button for changing the <code>AudioSource</code> between <code>headset</code> and <code>speaker</code>.
+/// Button for changing the ongoing call’s audio configuration. It operates differently depending on Bluetooth enabled headsets being connnected to the device:
+/// <ul>
+///   <li>
+///     By default it toggles the audio output between <code>headset</code> and <code>speaker</code>.
+///   </li>
+///   <li>
+///     When Bluetooth headset is available the button displays picker for changing the audio routing.
+///   </li>
+/// </ul>
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified speakerButton;
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified speakerTitleLabel;
 /// Button for disconnecting the call.
@@ -901,8 +969,8 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol RecordingConsentScreen;
 enum RecordingConsentAnswer : NSInteger;
 
-/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
-/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc. and presents appropriate UI:
+/// A screen presented before making a call, used to ask the user about necessary permissions that need to be granted.
+/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc., and presents the appropriate UI:
 /// <code>Microphone screen</code> view is presented if microphone permission is not granted
 /// <code>Recording Consent Screen</code> view is presented only if <code>Recording Consent</code> configuration for the provided <code>Digital Line</code> is set to <code>optIn</code> or <code>optOut</code>. If during fetching of the configuration error occurs, the <code>Error View</code> will be shown.
 /// important:
@@ -913,18 +981,19 @@ enum RecordingConsentAnswer : NSInteger;
 /// \endcodeThis screen will not be dismissed automatically. You need to provide the functionality on <code>cancelHandler</code> and <code>startCallHandler</code> handlers.
 SWIFT_PROTOCOL("_TtP7TalkSDK23CallConfigurationScreen_")
 @protocol CallConfigurationScreen
-/// Container for UI elements shown as Microphone permission screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Microphone permission screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
-/// Container for UI elements shown as Recording Consent screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Recording Consent screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <RecordingConsentScreen> _Nonnull recordingConsentScreen;
-/// The handler which will be called when user will cancel the configuration at any time.
+/// Handler that is called when end user cancels the configuration at any time.
 @property (nonatomic, copy) void (^ _Nullable cancelHandler)(void);
-/// After successfull configuration finished the handler will be called with user’s <code>RecordingConsentAnswer</code>.
+/// Handler called after completing the configuration, it will be called with user’s <code>RecordingConsentAnswer</code>.
 @property (nonatomic, copy) void (^ _Nullable startCallHandler)(enum RecordingConsentAnswer);
 @end
 
 @class NSCoder;
 
+/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
 SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @interface CallConfigurationViewController : UIViewController <CallConfigurationScreen>
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
@@ -938,29 +1007,21 @@ SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @end
 
 
-/// Represents all data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// Represents all required parameters to make a call.
 SWIFT_PROTOCOL("_TtP7TalkSDK8CallData_")
 @protocol CallData
-/// Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
+/// Name of digital line configured by the admin in Talk Settings.
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
-/// Instruction about recording the call
+/// Answer received from end user about recording the call.
 @property (nonatomic, readonly) enum RecordingConsentAnswer recordingConsentAnswer;
 @end
 
 
-/// Represent the error view with <code>retry</code> and <code>cancel</code> button.
-/// <code>CallErrorView</code> is visible when starting call was failed. The screen will be showed on full screen.
+/// Represent the error view with <code>retry</code> and <code>cancel</code> buttons.
+/// <code>CallErrorView</code> is visible when starting a call has failed. The screen will is shown full screen.
 /// On that screen you can change fonts, text colors, background colors, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 @protocol CallErrorView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -975,10 +1036,10 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 
 /// Represent the loading view with activity indicator on the call screen.
 /// When starting a call the SDK needs to prepare the call configuration.
-/// At this time on the <code>Call Screen</code> an activity indicator with title is shown.
+/// At this time on the <code>CallScreen</code> an activity indicator with a title is shown.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @protocol CallLoadingView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -988,7 +1049,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @class UIView;
 @protocol CallTimerView;
 
-/// A view controller that displayed for an ongoing call.
+/// A screen presented for an ongoing call.
 /// This screen is shown during the all states of call (<code>starting</code>, <code>in progress</code>, <code>fail</code>, etc).
 /// It contains various sub-views related to displaying info depending on call state.
 /// note:
@@ -1004,13 +1065,13 @@ SWIFT_PROTOCOL("_TtP7TalkSDK10CallScreen_")
 /// View containing call screen action buttons.
 @property (nonatomic, readonly, strong) UIView <CallButtonsView> * _Nonnull callButtonsView;
 /// Disconnects the call.
-/// It is possible to manually disconnect the call from every state of the call. After disconnecting the <code>callDidFinishHandler</code> is called.
+/// It is possible to manually disconnect the call from every state of the call. After disconnecting, the <code>callDidFinishHandler</code> is called.
 - (void)disconnect;
 @end
 
-/// Represents all possible states in which the call can be
+/// Represents all possible states of the call.
 typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
-/// The call is connecting
+/// The call is connecting.
   CallStatusConnecting = 0,
 /// The call has been connected.
   CallStatusConnected = 1,
@@ -1025,11 +1086,11 @@ typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
 };
 
 
-/// Represent the timer view with time counter.
-/// The view is shown when call is on progress with title <code>Call in progress</code> and automatic timer in seconds.
-/// On that screen you can change font, text colors, background color, etc.
+/// Represent the timer view with a label showing call’s duration.
+/// The view is shown when a call is in progress with the title <code>Call in progress</code> and an automatically updated timer label showing call’s duration in seconds.
+/// On that screen you can change the font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @protocol CallTimerView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -1038,6 +1099,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @end
 
 
+/// A view controller displayed for an ongoing call.
 SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 @interface CallViewController : UIViewController <CallScreen>
 @property (nonatomic, readonly, strong) UIView <CallLoadingView> * _Nonnull callLoadingView;
@@ -1052,61 +1114,69 @@ SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
+@class AVRoutePickerView;
+
+SWIFT_AVAILABILITY(ios,introduced=11.0)
+@interface CallViewController (SWIFT_EXTENSION(TalkSDK)) <AVRoutePickerViewDelegate>
+- (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+- (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+@end
+
 enum RecordingConsent : NSInteger;
 
-/// Comprehensive information about status of linked line.
+/// Comprehensive information about status of digital line.
 SWIFT_PROTOCOL("_TtP7TalkSDK10LineStatus_")
 @protocol LineStatus
 /// Boolean flag which should be used to determine whether the “call us button” should be visible to end user.
-/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or agent is busy.
+/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or no agent is available.
 @property (nonatomic, readonly) BOOL agentAvailable;
-/// Property which should be optionally used to allow end user from opting-in or opting-out from call recording.
+/// Digital line’s current recording and recording consent configuration.
+/// Using value of this property the end user may be allowed for opting-in or opting-out from call recording.
 /// If the <em>recordingConsent</em> is <code>unknown</code> it means that end user does not need to opt-in or opt-out from call recording.
 /// At the same time the <code>unknown</code> value does not provide any information whether the call will be recorded or not.
-/// With the <code>unknown</code> value, all configuration are handled in server side.
+/// With the <code>unknown</code> value, all configuration is handled server side.
 @property (nonatomic, readonly) enum RecordingConsent recordingConsent;
 @end
 
 @class UIColor;
 
-/// Represents the Microphone permission screen.
-/// This Screen contains checking and requesting microphone permission. If there was not checks before, it will show systems alert asking about permission. If there was check already, it will show the alert with asking user to turn on permission on <code>Settings</code>.
+/// Screen handling microphone permission configuration.
+/// This screen checks and requests microphone permission. If there was no check before, it will show a system alert asking for permission. If there was a check and the microphone access was denied, it will show an alert asking user to turn on permission in Settings. If the microphone permission were already granted the screen is not presented.
 /// important:
 /// Please remember about adding <code>NSMicrophoneUsageDescription</code> into your app’s <code>Info.plist</code> file with description.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK26MicrophonePermissionScreen_")
 @protocol MicrophonePermissionScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: ‘Allow microphone’).
+/// Label which shows main title. Example: ‘Allow microphone’.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Allow Button which will open alert with asking user about microphone permission. In case permission already <code>granted</code> will call. <code>requestPermissionCompletion</code>
+/// Allow Button that opens an alert asking user about microphone permission. In case permission is already granted, calls <code>requestPermissionCompletion</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified allowButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and call <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 @end
 
 
 
-/// Represents status of recording consent.
-/// Enum cases corresponds to all possible actions end user can take in the application.
+/// Represents digital line’s recording consent configuration.
 typedef SWIFT_ENUM(NSInteger, RecordingConsent, open) {
-/// Call recording is disabled by default, but the end-user has the option to opt-in
+/// Call recording is disabled by default, but the end user has the option to opt-in
   RecordingConsentOptIn = 0,
-/// Call recording is enabled by default, but the end-user has the option to opt-out
+/// Call recording is enabled by default, but the end user has the option to opt-out
   RecordingConsentOptOut = 1,
-/// Call recording is not defined on a Talk settings
+/// Call recording is not defined in Talk settings
   RecordingConsentUnknown = 2,
 };
 
-/// Represents the answer received from end-user about recording the call.
+/// Represents the answer received from end user about recording the call.
 typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
-/// Default setting was to not record the call, however end-user opted in for recording the call.
+/// Even if the default setting is not to record the call, end user opted in for recording the call.
   RecordingConsentAnswerOptedIn = 0,
-/// Default setting was to record the call, however end-user opted-out from recording the call.
+/// Even if the default setting was to record the call, the end user opted-out from recording the call.
   RecordingConsentAnswerOptedOut = 1,
 /// User did not provide answer about recording the call.
   RecordingConsentAnswerUnknown = 2,
@@ -1114,31 +1184,31 @@ typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
 
 @class UISwitch;
 
-/// Represents the Recording Consent screen.
+/// Screen handling recording consent.
 /// The screen contains all UI elements of the view.
-/// It’s shown when the <code>Recording Consent</code> received from <code>lineStatus</code> has value of: <code>optIn</code> or <code>optOut</code>. Otherwise the no answer is necessary and the screen is not presented.
+/// It is shown only when the <code>Recording Consent</code> received from <code>lineStatus</code> has a value of <code>optIn</code> or <code>optOut</code>. Otherwise no user’s answer is required and the screen is not presented.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK22RecordingConsentScreen_")
 @protocol RecordingConsentScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: “Recording this call”).
+/// Label which shows main title. Example: “Recording this call”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Button which will call <code>startCallHandler</code> handler.
+/// Button which calls <code>startCallHandler</code> handler.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified startCallButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and calls <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 /// The view which contains consent <code>UISwitch</code> and description label.
 @property (nonatomic, readonly, strong) UIView * _Null_unspecified consentSwitchView;
-/// Switch which will reflect user’s <code>RecordingConsentAnswer</code>.  Switch On will equal to <code>.optIn</code>, Switch Off - <code>.optOut</code>.
+/// Switch which reflects user’s <code>RecordingConsentAnswer</code>. The <code>on</code> state equals to <code>.optIn</code>, and <code>off</code> state to <code>.optOut</code>.
 @property (nonatomic, readonly, strong) UISwitch * _Null_unspecified consentSwitch;
-/// Label which message regarding uiswitch. (ex: “I agree to this call being recorder”)
+/// Label which message regarding uiswitch. Example: “I agree to this call being recorder”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified consentDescriptionLabel;
-/// Indicator which is shown when fetching RecordingConsent
+/// Indicator which is shown when fetching digital line’s recording consent configuration.
 @property (nonatomic, readonly, strong) UIActivityIndicatorView * _Null_unspecified activityIndicatorView;
 @end
 
@@ -1158,26 +1228,26 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-
-
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Returns Call Configuration view controller
-/// Before making a call you need to make sure use has granted all required permissions. You can achieve this using provided configuration view controller
+/// Before making a call you need to make sure user has granted all required permissions. You can use this provided view controller for checking and asking for the permissions and validating all states.
 /// important:
-/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: cancelHandler for the view controller’s dismissal and startCallHandler for presenting the call view controller and starting a call.
+/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: <code>cancelHandler</code> for the view controller’s dismissal and <code>startCallHandler</code> for presenting the call view controller and starting a call.
 /// \param digitalLine A nickname of a digital line for which the configuration will be displayed.
 ///
 ///
 /// returns:
-/// <code>UIViewController</code> with configured components and flow.
+/// <code>CallConfigurationScreenViewController</code>, which is a <code>CallConfigurationScreen</code> conforming <code>UIViewController</code> with configured components and flow.
 - (UIViewController <CallConfigurationScreen> * _Nonnull)makeCallConfigurationViewControllerFor:(NSString * _Nonnull)digitalLine SWIFT_WARN_UNUSED_RESULT;
 @end
+
+
 
 @protocol TalkCall;
 
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Provides asynchronous information about status of line associated with <code>digitalLine</code> in Talk Settings.
-/// For more information about line status look on the <code>LineStatus</code> documentation.
+/// For more information about line status, see the <code>LineStatus</code> documentation.
 /// \param digitalLine name of digital line configured by the admin in Talk Settings
 ///
 /// \param completion return <code>Result</code> with <code>LineStatus</code> for success status or <code>NSError</code> for fail.
@@ -1219,36 +1289,32 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-/// Represents call created by Talk SDK.
-/// Responsibility of this class is to provide set of basic operations connected to the call,
-/// like muting, disconnecting or changing audio output type.
+/// Represents a call created by Talk SDK.
+/// Responsibility of this class is to provide set of basic operations related to the ongoing call, like muting, disconnecting or changing audio output type.
 SWIFT_PROTOCOL("_TtP7TalkSDK8TalkCall_")
 @protocol TalkCall
 /// Property that defines if the call is muted.
 /// Mutes or un-mutes the call depending on the value of <em>muted</em>.
 /// Default value is <code>false</code>.
 @property (nonatomic) BOOL muted;
-/// Property that shows duration of call in miliseconds.
-/// Default value is <code>0</code>. It will be <code>0</code> until call will not be started.
+/// Property that shows duration of call in seconds.
+/// Default value is <code>0</code>. It will be <code>0</code> until the call is started.
 @property (nonatomic, readonly) NSTimeInterval duration;
 /// Ends the ongoing call.
-/// If the call was not disconnected before then <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>
-/// If the call was already disconnected then <code>TalkProvider.call.onStatusChange</code> will not be called
+/// If the call was not disconnected before - then the <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>.
+/// If the call was already disconnected - then the <code>TalkProvider.call.onStatusChange</code> will not be called.
 - (void)disconnect;
 /// Device specified audio output.
+/// Default value is <code>AudioOutput.headset</code>.
 @property (nonatomic) enum AudioOutput audioOutput;
+/// Current audio routing for call’s audio input and output.
+@property (nonatomic, strong) id <AudioRoutingOption> _Nullable audioRouting;
+/// List of all currently available audio routing options provided by the device.
+@property (nonatomic, readonly, copy) NSArray<id <AudioRoutingOption>> * _Nonnull availableAudioRoutingOptions;
 @end
 
 
-/// The class conforming <code>CallData</code> -the data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// <code>CallData</code> conforming class that represents parameters required to make a call.
 SWIFT_CLASS_NAMED("TalkCallData")
 @interface ZDKTalkCallData : NSObject <CallData>
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
@@ -1258,15 +1324,15 @@ SWIFT_CLASS_NAMED("TalkCallData")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-/// Represents failed state when trying to create<code>CallSummary</code> object.
+/// Represents errors occuring for a <code>failed</code> or <code>disconnected</code> call.
 typedef SWIFT_ENUM(NSInteger, TalkCallError, open) {
 /// No digital line was found with a provided name.
   TalkCallErrorDigitalLineNotFound = 0,
-/// Establishing the call was failed because of network issue
+/// Establishing the call failed because of network issues.
   TalkCallErrorNetworkError = 1,
 /// The app is not authorized to make a call.
   TalkCallErrorUnauthorized = 2,
-/// An unknown error occurred while establishing the call
+/// An unknown error occurred while establishing the call.
   TalkCallErrorUnknown = 3,
 };
 static NSString * _Nonnull const TalkCallErrorDomain = @"TalkSDK.TalkCallError";
@@ -1486,6 +1552,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import AVFoundation;
+@import AVKit;
 @import Foundation;
 @import ObjectiveC;
 @import QuartzCore;
@@ -1510,12 +1577,38 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
-/// Describes possible options for playing the audio while call is active.
+enum AudioRoutingType : NSInteger;
+
+/// Describes possible options for routing call’s audio input and output.
+SWIFT_PROTOCOL("_TtP7TalkSDK18AudioRoutingOption_")
+@protocol AudioRoutingOption
+/// Localized name of the routing option.
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// Type of audio routing option.
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+
+@interface AVAudioSessionPortDescription (SWIFT_EXTENSION(TalkSDK)) <AudioRoutingOption>
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+@property (nonatomic, readonly) enum AudioRoutingType type;
+@end
+
+/// Describes possible options for audio playback during the call.
 typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 /// The call audio will be routed through the speakers.
   AudioOutputSpeaker = 0,
-/// The call audio will be routed through the headsets.
+/// The call audio will be routed through the headset.
   AudioOutputHeadset = 1,
+};
+
+
+/// Describes type of an audio routing option.
+typedef SWIFT_ENUM(NSInteger, AudioRoutingType, open) {
+/// Used for routing option using built-in speakers and microphone.
+  AudioRoutingTypeBuiltIn = 0,
+/// Used for routing option using bluetooth connectivity.
+  AudioRoutingTypeBluetooth = 1,
 };
 
 
@@ -1526,15 +1619,23 @@ typedef SWIFT_ENUM(NSInteger, AudioOutput, open) {
 @class UILabel;
 
 /// Represent the bottom buttons view in call screen.
-/// This view contains all three buttons for mute, change audio source and hang up.
-/// The view contains buttons and title labels
+/// This view contains buttons for: mute, change audio source and hang up actions.
+/// The view contains buttons and matching title labels.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 /// note:
 /// Labels with text under the buttons are not the part of the buttons.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol CallButtonsView
-/// Button for changing the <code>AudioSource</code> between <code>headset</code> and <code>speaker</code>.
+/// Button for changing the ongoing call’s audio configuration. It operates differently depending on Bluetooth enabled headsets being connnected to the device:
+/// <ul>
+///   <li>
+///     By default it toggles the audio output between <code>headset</code> and <code>speaker</code>.
+///   </li>
+///   <li>
+///     When Bluetooth headset is available the button displays picker for changing the audio routing.
+///   </li>
+/// </ul>
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified speakerButton;
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified speakerTitleLabel;
 /// Button for disconnecting the call.
@@ -1549,8 +1650,8 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallButtonsView_")
 @protocol RecordingConsentScreen;
 enum RecordingConsentAnswer : NSInteger;
 
-/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
-/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc. and presents appropriate UI:
+/// A screen presented before making a call, used to ask the user about necessary permissions that need to be granted.
+/// This screen internally manages all required checks: microphone permission access, digital line recording consent configuration etc., and presents the appropriate UI:
 /// <code>Microphone screen</code> view is presented if microphone permission is not granted
 /// <code>Recording Consent Screen</code> view is presented only if <code>Recording Consent</code> configuration for the provided <code>Digital Line</code> is set to <code>optIn</code> or <code>optOut</code>. If during fetching of the configuration error occurs, the <code>Error View</code> will be shown.
 /// important:
@@ -1561,18 +1662,19 @@ enum RecordingConsentAnswer : NSInteger;
 /// \endcodeThis screen will not be dismissed automatically. You need to provide the functionality on <code>cancelHandler</code> and <code>startCallHandler</code> handlers.
 SWIFT_PROTOCOL("_TtP7TalkSDK23CallConfigurationScreen_")
 @protocol CallConfigurationScreen
-/// Container for UI elements shown as Microphone permission screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Microphone permission screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
-/// Container for UI elements shown as Recording Consent screen. Gives you access to customization of UI controls such as font, text colors, etc.
+/// Container for UI elements shown as Recording Consent screen. Enables customization of UI controls such as font, text colors, etc.
 @property (nonatomic, readonly, strong) id <RecordingConsentScreen> _Nonnull recordingConsentScreen;
-/// The handler which will be called when user will cancel the configuration at any time.
+/// Handler that is called when end user cancels the configuration at any time.
 @property (nonatomic, copy) void (^ _Nullable cancelHandler)(void);
-/// After successfull configuration finished the handler will be called with user’s <code>RecordingConsentAnswer</code>.
+/// Handler called after completing the configuration, it will be called with user’s <code>RecordingConsentAnswer</code>.
 @property (nonatomic, copy) void (^ _Nullable startCallHandler)(enum RecordingConsentAnswer);
 @end
 
 @class NSCoder;
 
+/// A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.
 SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @interface CallConfigurationViewController : UIViewController <CallConfigurationScreen>
 @property (nonatomic, readonly, strong) id <MicrophonePermissionScreen> _Nonnull microphoneScreen;
@@ -1586,29 +1688,21 @@ SWIFT_CLASS("_TtC7TalkSDK31CallConfigurationViewController")
 @end
 
 
-/// Represents all data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// Represents all required parameters to make a call.
 SWIFT_PROTOCOL("_TtP7TalkSDK8CallData_")
 @protocol CallData
-/// Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
+/// Name of digital line configured by the admin in Talk Settings.
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
-/// Instruction about recording the call
+/// Answer received from end user about recording the call.
 @property (nonatomic, readonly) enum RecordingConsentAnswer recordingConsentAnswer;
 @end
 
 
-/// Represent the error view with <code>retry</code> and <code>cancel</code> button.
-/// <code>CallErrorView</code> is visible when starting call was failed. The screen will be showed on full screen.
+/// Represent the error view with <code>retry</code> and <code>cancel</code> buttons.
+/// <code>CallErrorView</code> is visible when starting a call has failed. The screen will is shown full screen.
 /// On that screen you can change fonts, text colors, background colors, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 @protocol CallErrorView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -1623,10 +1717,10 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallErrorView_")
 
 /// Represent the loading view with activity indicator on the call screen.
 /// When starting a call the SDK needs to prepare the call configuration.
-/// At this time on the <code>Call Screen</code> an activity indicator with title is shown.
+/// At this time on the <code>CallScreen</code> an activity indicator with a title is shown.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @protocol CallLoadingView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -1636,7 +1730,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK15CallLoadingView_")
 @class UIView;
 @protocol CallTimerView;
 
-/// A view controller that displayed for an ongoing call.
+/// A screen presented for an ongoing call.
 /// This screen is shown during the all states of call (<code>starting</code>, <code>in progress</code>, <code>fail</code>, etc).
 /// It contains various sub-views related to displaying info depending on call state.
 /// note:
@@ -1652,13 +1746,13 @@ SWIFT_PROTOCOL("_TtP7TalkSDK10CallScreen_")
 /// View containing call screen action buttons.
 @property (nonatomic, readonly, strong) UIView <CallButtonsView> * _Nonnull callButtonsView;
 /// Disconnects the call.
-/// It is possible to manually disconnect the call from every state of the call. After disconnecting the <code>callDidFinishHandler</code> is called.
+/// It is possible to manually disconnect the call from every state of the call. After disconnecting, the <code>callDidFinishHandler</code> is called.
 - (void)disconnect;
 @end
 
-/// Represents all possible states in which the call can be
+/// Represents all possible states of the call.
 typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
-/// The call is connecting
+/// The call is connecting.
   CallStatusConnecting = 0,
 /// The call has been connected.
   CallStatusConnected = 1,
@@ -1673,11 +1767,11 @@ typedef SWIFT_ENUM(NSInteger, CallStatus, open) {
 };
 
 
-/// Represent the timer view with time counter.
-/// The view is shown when call is on progress with title <code>Call in progress</code> and automatic timer in seconds.
-/// On that screen you can change font, text colors, background color, etc.
+/// Represent the timer view with a label showing call’s duration.
+/// The view is shown when a call is in progress with the title <code>Call in progress</code> and an automatically updated timer label showing call’s duration in seconds.
+/// On that screen you can change the font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own Call View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.
 SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @protocol CallTimerView
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
@@ -1686,6 +1780,7 @@ SWIFT_PROTOCOL("_TtP7TalkSDK13CallTimerView_")
 @end
 
 
+/// A view controller displayed for an ongoing call.
 SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 @interface CallViewController : UIViewController <CallScreen>
 @property (nonatomic, readonly, strong) UIView <CallLoadingView> * _Nonnull callLoadingView;
@@ -1700,61 +1795,69 @@ SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
+@class AVRoutePickerView;
+
+SWIFT_AVAILABILITY(ios,introduced=11.0)
+@interface CallViewController (SWIFT_EXTENSION(TalkSDK)) <AVRoutePickerViewDelegate>
+- (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+- (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
+@end
+
 enum RecordingConsent : NSInteger;
 
-/// Comprehensive information about status of linked line.
+/// Comprehensive information about status of digital line.
 SWIFT_PROTOCOL("_TtP7TalkSDK10LineStatus_")
 @protocol LineStatus
 /// Boolean flag which should be used to determine whether the “call us button” should be visible to end user.
-/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or agent is busy.
+/// Value <code>true</code> means that line is available to use. Value <code>false</code> means that the line is either disabled or no agent is available.
 @property (nonatomic, readonly) BOOL agentAvailable;
-/// Property which should be optionally used to allow end user from opting-in or opting-out from call recording.
+/// Digital line’s current recording and recording consent configuration.
+/// Using value of this property the end user may be allowed for opting-in or opting-out from call recording.
 /// If the <em>recordingConsent</em> is <code>unknown</code> it means that end user does not need to opt-in or opt-out from call recording.
 /// At the same time the <code>unknown</code> value does not provide any information whether the call will be recorded or not.
-/// With the <code>unknown</code> value, all configuration are handled in server side.
+/// With the <code>unknown</code> value, all configuration is handled server side.
 @property (nonatomic, readonly) enum RecordingConsent recordingConsent;
 @end
 
 @class UIColor;
 
-/// Represents the Microphone permission screen.
-/// This Screen contains checking and requesting microphone permission. If there was not checks before, it will show systems alert asking about permission. If there was check already, it will show the alert with asking user to turn on permission on <code>Settings</code>.
+/// Screen handling microphone permission configuration.
+/// This screen checks and requests microphone permission. If there was no check before, it will show a system alert asking for permission. If there was a check and the microphone access was denied, it will show an alert asking user to turn on permission in Settings. If the microphone permission were already granted the screen is not presented.
 /// important:
 /// Please remember about adding <code>NSMicrophoneUsageDescription</code> into your app’s <code>Info.plist</code> file with description.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK26MicrophonePermissionScreen_")
 @protocol MicrophonePermissionScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: ‘Allow microphone’).
+/// Label which shows main title. Example: ‘Allow microphone’.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Allow Button which will open alert with asking user about microphone permission. In case permission already <code>granted</code> will call. <code>requestPermissionCompletion</code>
+/// Allow Button that opens an alert asking user about microphone permission. In case permission is already granted, calls <code>requestPermissionCompletion</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified allowButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and call <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 @end
 
 
 
-/// Represents status of recording consent.
-/// Enum cases corresponds to all possible actions end user can take in the application.
+/// Represents digital line’s recording consent configuration.
 typedef SWIFT_ENUM(NSInteger, RecordingConsent, open) {
-/// Call recording is disabled by default, but the end-user has the option to opt-in
+/// Call recording is disabled by default, but the end user has the option to opt-in
   RecordingConsentOptIn = 0,
-/// Call recording is enabled by default, but the end-user has the option to opt-out
+/// Call recording is enabled by default, but the end user has the option to opt-out
   RecordingConsentOptOut = 1,
-/// Call recording is not defined on a Talk settings
+/// Call recording is not defined in Talk settings
   RecordingConsentUnknown = 2,
 };
 
-/// Represents the answer received from end-user about recording the call.
+/// Represents the answer received from end user about recording the call.
 typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
-/// Default setting was to not record the call, however end-user opted in for recording the call.
+/// Even if the default setting is not to record the call, end user opted in for recording the call.
   RecordingConsentAnswerOptedIn = 0,
-/// Default setting was to record the call, however end-user opted-out from recording the call.
+/// Even if the default setting was to record the call, the end user opted-out from recording the call.
   RecordingConsentAnswerOptedOut = 1,
 /// User did not provide answer about recording the call.
   RecordingConsentAnswerUnknown = 2,
@@ -1762,31 +1865,31 @@ typedef SWIFT_ENUM(NSInteger, RecordingConsentAnswer, open) {
 
 @class UISwitch;
 
-/// Represents the Recording Consent screen.
+/// Screen handling recording consent.
 /// The screen contains all UI elements of the view.
-/// It’s shown when the <code>Recording Consent</code> received from <code>lineStatus</code> has value of: <code>optIn</code> or <code>optOut</code>. Otherwise the no answer is necessary and the screen is not presented.
+/// It is shown only when the <code>Recording Consent</code> received from <code>lineStatus</code> has a value of <code>optIn</code> or <code>optOut</code>. Otherwise no user’s answer is required and the screen is not presented.
 /// This view has customizable font, text colors, background color, etc.
 /// important:
-/// Please note that you cannot change layout of elements. In case you need your own layout setup, please use other SDK’s API methods and build your own <code>Recording Consent</code> View.
+/// You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.
 SWIFT_PROTOCOL("_TtP7TalkSDK22RecordingConsentScreen_")
 @protocol RecordingConsentScreen
-/// Background color of the screen container
+/// Background color of the screen container.
 @property (nonatomic, strong) UIColor * _Nullable backgroundColor;
-/// Label which shows main title. (ex: “Recording this call”).
+/// Label which shows main title. Example: “Recording this call”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified titleLabel;
 /// Label which shows description message under the title label.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified messageLabel;
-/// Button which will call <code>startCallHandler</code> handler.
+/// Button which calls <code>startCallHandler</code> handler.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified startCallButton;
-/// Cancel Button which will cancel all the flow and call <code>cancelHandler</code>.
+/// Cancel Button which cancels all the flow and calls <code>cancelHandler</code>.
 @property (nonatomic, readonly, strong) UIButton * _Null_unspecified cancelButton;
 /// The view which contains consent <code>UISwitch</code> and description label.
 @property (nonatomic, readonly, strong) UIView * _Null_unspecified consentSwitchView;
-/// Switch which will reflect user’s <code>RecordingConsentAnswer</code>.  Switch On will equal to <code>.optIn</code>, Switch Off - <code>.optOut</code>.
+/// Switch which reflects user’s <code>RecordingConsentAnswer</code>. The <code>on</code> state equals to <code>.optIn</code>, and <code>off</code> state to <code>.optOut</code>.
 @property (nonatomic, readonly, strong) UISwitch * _Null_unspecified consentSwitch;
-/// Label which message regarding uiswitch. (ex: “I agree to this call being recorder”)
+/// Label which message regarding uiswitch. Example: “I agree to this call being recorder”.
 @property (nonatomic, readonly, strong) UILabel * _Null_unspecified consentDescriptionLabel;
-/// Indicator which is shown when fetching RecordingConsent
+/// Indicator which is shown when fetching digital line’s recording consent configuration.
 @property (nonatomic, readonly, strong) UIActivityIndicatorView * _Null_unspecified activityIndicatorView;
 @end
 
@@ -1806,26 +1909,26 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-
-
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Returns Call Configuration view controller
-/// Before making a call you need to make sure use has granted all required permissions. You can achieve this using provided configuration view controller
+/// Before making a call you need to make sure user has granted all required permissions. You can use this provided view controller for checking and asking for the permissions and validating all states.
 /// important:
-/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: cancelHandler for the view controller’s dismissal and startCallHandler for presenting the call view controller and starting a call.
+/// This view controller won’t start a call as its responsibility is only to handle required permissions. Please provide the handlers for implementing the navigation flow: <code>cancelHandler</code> for the view controller’s dismissal and <code>startCallHandler</code> for presenting the call view controller and starting a call.
 /// \param digitalLine A nickname of a digital line for which the configuration will be displayed.
 ///
 ///
 /// returns:
-/// <code>UIViewController</code> with configured components and flow.
+/// <code>CallConfigurationScreenViewController</code>, which is a <code>CallConfigurationScreen</code> conforming <code>UIViewController</code> with configured components and flow.
 - (UIViewController <CallConfigurationScreen> * _Nonnull)makeCallConfigurationViewControllerFor:(NSString * _Nonnull)digitalLine SWIFT_WARN_UNUSED_RESULT;
 @end
+
+
 
 @protocol TalkCall;
 
 @interface ZDKTalk (SWIFT_EXTENSION(TalkSDK))
 /// Provides asynchronous information about status of line associated with <code>digitalLine</code> in Talk Settings.
-/// For more information about line status look on the <code>LineStatus</code> documentation.
+/// For more information about line status, see the <code>LineStatus</code> documentation.
 /// \param digitalLine name of digital line configured by the admin in Talk Settings
 ///
 /// \param completion return <code>Result</code> with <code>LineStatus</code> for success status or <code>NSError</code> for fail.
@@ -1867,36 +1970,32 @@ SWIFT_CLASS_NAMED("Talk")
 @end
 
 
-/// Represents call created by Talk SDK.
-/// Responsibility of this class is to provide set of basic operations connected to the call,
-/// like muting, disconnecting or changing audio output type.
+/// Represents a call created by Talk SDK.
+/// Responsibility of this class is to provide set of basic operations related to the ongoing call, like muting, disconnecting or changing audio output type.
 SWIFT_PROTOCOL("_TtP7TalkSDK8TalkCall_")
 @protocol TalkCall
 /// Property that defines if the call is muted.
 /// Mutes or un-mutes the call depending on the value of <em>muted</em>.
 /// Default value is <code>false</code>.
 @property (nonatomic) BOOL muted;
-/// Property that shows duration of call in miliseconds.
-/// Default value is <code>0</code>. It will be <code>0</code> until call will not be started.
+/// Property that shows duration of call in seconds.
+/// Default value is <code>0</code>. It will be <code>0</code> until the call is started.
 @property (nonatomic, readonly) NSTimeInterval duration;
 /// Ends the ongoing call.
-/// If the call was not disconnected before then <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>
-/// If the call was already disconnected then <code>TalkProvider.call.onStatusChange</code> will not be called
+/// If the call was not disconnected before - then the <code>TalkProvider.call.onStatusChange</code>  will be called with <code>CallStatus.disconnected</code>.
+/// If the call was already disconnected - then the <code>TalkProvider.call.onStatusChange</code> will not be called.
 - (void)disconnect;
 /// Device specified audio output.
+/// Default value is <code>AudioOutput.headset</code>.
 @property (nonatomic) enum AudioOutput audioOutput;
+/// Current audio routing for call’s audio input and output.
+@property (nonatomic, strong) id <AudioRoutingOption> _Nullable audioRouting;
+/// List of all currently available audio routing options provided by the device.
+@property (nonatomic, readonly, copy) NSArray<id <AudioRoutingOption>> * _Nonnull availableAudioRoutingOptions;
 @end
 
 
-/// The class conforming <code>CallData</code> -the data needed to make a call
-/// <ul>
-///   <li>
-///     <em>digitalLine</em> - Identifier of the line.  Needs to match the line name specified by admin in Talk Settings
-///   </li>
-///   <li>
-///     <em>recordingConsentAnswer</em> - Instruction about recording the call
-///   </li>
-/// </ul>
+/// <code>CallData</code> conforming class that represents parameters required to make a call.
 SWIFT_CLASS_NAMED("TalkCallData")
 @interface ZDKTalkCallData : NSObject <CallData>
 @property (nonatomic, readonly, copy) NSString * _Nonnull digitalLine;
@@ -1906,15 +2005,15 @@ SWIFT_CLASS_NAMED("TalkCallData")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-/// Represents failed state when trying to create<code>CallSummary</code> object.
+/// Represents errors occuring for a <code>failed</code> or <code>disconnected</code> call.
 typedef SWIFT_ENUM(NSInteger, TalkCallError, open) {
 /// No digital line was found with a provided name.
   TalkCallErrorDigitalLineNotFound = 0,
-/// Establishing the call was failed because of network issue
+/// Establishing the call failed because of network issues.
   TalkCallErrorNetworkError = 1,
 /// The app is not authorized to make a call.
   TalkCallErrorUnauthorized = 2,
-/// An unknown error occurred while establishing the call
+/// An unknown error occurred while establishing the call.
   TalkCallErrorUnknown = 3,
 };
 static NSString * _Nonnull const TalkCallErrorDomain = @"TalkSDK.TalkCallError";

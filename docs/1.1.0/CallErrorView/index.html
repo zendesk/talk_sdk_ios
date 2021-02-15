@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-1.1.0 - CallErrorView</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/docs/1.1.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/docs/1.1.0">
+            <strong>
+                TalkSDK-1.1.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="variable"><a href="#callerrorview.titlelabel">title​Label</a></li><li class="variable"><a href="#callerrorview.messagelabel">message​Label</a></li><li class="variable"><a href="#callerrorview.retrybutton">retry​Button</a></li><li class="variable"><a href="#callerrorview.cancelbutton">cancel​Button</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Call​Error​View</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">CallErrorView</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Represent the error view with <code>retry</code> and <code>cancel</code> buttons.</p>
+
+</div>
+<div class="discussion">
+    <p><code>CallErrorView</code> is visible when starting a call has failed. The screen will is shown full screen.
+On that screen you can change fonts, text colors, background colors, etc.</p>
+
+<aside class="important">
+    <p>You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own Call View.</p>
+
+</aside>
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="variable" id="callerrorview.titlelabel">
+    <h3>
+        <code>title​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">titleLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="callerrorview.messagelabel">
+    <h3>
+        <code>message​Label</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">messageLabel</span>: <span class="type">UILabel</span>!</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="callerrorview.retrybutton">
+    <h3>
+        <code>retry​Button</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">retryButton</span>: <span class="type">UIButton</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Retry button. When user will tap it call will try to reconnect.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="callerrorview.cancelbutton">
+    <h3>
+        <code>cancel​Button</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">cancelButton</span>: <span class="type">UIButton</span>!</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Cancel button. Tapping will close the Call Screen.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-02-15T16:25:27+0100">15 February 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

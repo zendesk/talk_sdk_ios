@@ -2,7 +2,9 @@
 // swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
 // swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name TalkSDK
 import AVFoundation
+import AVKit
 import Foundation
+import MediaPlayer
 import Swift
 @_exported import TalkSDK
 import TwilioVoice
@@ -52,6 +54,8 @@ public enum AgentStatusError : Swift.Int, Swift.Error {
   @objc var duration: Foundation.TimeInterval { get }
   @objc func disconnect()
   @objc var audioOutput: TalkSDK.AudioOutput { get set }
+  @objc var audioRouting: TalkSDK.AudioRoutingOption? { get set }
+  @objc var availableAudioRoutingOptions: [TalkSDK.AudioRoutingOption] { get }
 }
 public protocol TalkCoreProvider : AnyObject {
   typealias LineStatusResult = Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>
@@ -64,16 +68,16 @@ public protocol TalkCoreProvider : AnyObject {
   @objc deinit
   @objc override dynamic public init()
 }
+extension Talk : TalkSDK.TalkFlowProvider {
+  @objc(startCallToDigitalLine:) final public func startCall(to digitalLine: TalkSDK.DigitalLine)
+}
+extension Talk : TalkSDK.TalkScreenProvider {
+  @objc final public func makeCallConfigurationViewController(for digitalLine: Swift.String) -> TalkSDK.Talk.CallConfigurationScreenViewController
+  final public func makeCallViewController(with callData: TalkSDK.CallData, callDidFinishHandler: @escaping (TalkSDK.Talk.CallScreenViewController, TalkSDK.CallSummary) -> Swift.Void) -> TalkSDK.Talk.CallScreenViewController
+}
 extension Talk : TalkSDK.TalkCoreProvider {
   final public func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping (Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> Swift.Void)
   final public func call(callData: TalkSDK.CallData, statusChangeHandler: @escaping TalkSDK.Talk.StatusChangeHandler) -> TalkSDK.TalkCall
-}
-extension Talk : TalkSDK.TalkScreenProvider {
-  @objc final public func makeCallConfigurationViewController(for digitalLine: Swift.String) -> UIKit.UIViewController & TalkSDK.CallConfigurationScreen
-  final public func makeCallViewController(with callData: TalkSDK.CallData, callDidFinishHandler: @escaping (TalkSDK.Talk.CallScreenViewController, TalkSDK.CallSummary) -> Swift.Void) -> TalkSDK.Talk.CallScreenViewController
-}
-extension Talk : TalkSDK.TalkFlowProvider {
-  @objc(startCallToDigitalLine:) final public func startCall(to digitalLine: TalkSDK.DigitalLine)
 }
 extension Talk {
   @available(swift, obsoleted: 1.0)
@@ -113,6 +117,11 @@ extension Talk {
   @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @objc deinit
 }
+@available(iOS 11.0, *)
+extension CallViewController : AVKit.AVRoutePickerViewDelegate {
+  @objc final public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
+  @objc final public func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
+}
 @objc public protocol CallLoadingView {
   @objc var titleLabel: UIKit.UILabel! { get }
   @objc var activityIndicator: UIKit.UIActivityIndicatorView! { get }
@@ -141,6 +150,27 @@ extension Talk {
   @objc var callTimerView: UIKit.UIView & TalkSDK.CallTimerView { get }
   @objc var callButtonsView: UIKit.UIView & TalkSDK.CallButtonsView { get }
   @objc func disconnect()
+}
+@objc public enum AudioRoutingType : Swift.Int {
+  case builtIn
+  case bluetooth
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol AudioRoutingOption {
+  @objc var name: Swift.String { get }
+  @objc var type: TalkSDK.AudioRoutingType { get }
+}
+extension AVAudioSessionPortDescription : TalkSDK.AudioRoutingOption {
+  @objc dynamic public var name: Swift.String {
+    @objc get
+  }
+  @objc dynamic public var type: TalkSDK.AudioRoutingType {
+    @objc get
+  }
 }
 extension AgentStatusError : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -260,6 +290,9 @@ extension TalkSDK.TalkCallError : Swift.RawRepresentable {}
 extension TalkSDK.AudioOutput : Swift.Equatable {}
 extension TalkSDK.AudioOutput : Swift.Hashable {}
 extension TalkSDK.AudioOutput : Swift.RawRepresentable {}
+extension TalkSDK.AudioRoutingType : Swift.Equatable {}
+extension TalkSDK.AudioRoutingType : Swift.Hashable {}
+extension TalkSDK.AudioRoutingType : Swift.RawRepresentable {}
 extension TalkSDK.CallStatus : Swift.Equatable {}
 extension TalkSDK.CallStatus : Swift.Hashable {}
 extension TalkSDK.CallStatus : Swift.RawRepresentable {}
