@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-2.0.0 - TalkSDK-2.0.0</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/docs/2.0.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/docs/2.0.0">
+            <strong>
+                TalkSDK-2.0.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#classes">Classes</a></li><li><a href="#enumerations">Enumerations</a></li><li><a href="#protocols">Protocols</a></li><li><a href="#typealiases">Typealiases</a></li><li><a href="#extensions">Extensions</a></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+                <section id="classes">
+        <h2>Classes</h2>
+        <dl>
+            <dt class="class">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkCallData" title="class - TalkCallData">
+        Talk​Call​Data
+    </a>
+</dt>
+<dd>
+    <p><code>CallData</code> conforming class that represents parameters required to make a call.</p>
+
+</dd>
+<dt class="class">
+    <a href="/talk_sdk_ios/docs/2.0.0/Talk" title="class - Talk">
+        Talk
+    </a>
+</dt>
+<dd>
+    <p>An entry point into Talk SDK for iOS.</p>
+
+</dd>
+<dt class="class">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallConfigurationViewController" title="class - CallConfigurationViewController">
+        Call​Configuration​View​Controller
+    </a>
+</dt>
+<dd>
+    <p>A view controller that is displayed before making a call, used to ask the user about necessary permissions that need to be granted.</p>
+
+</dd>
+<dt class="class">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallViewController" title="class - CallViewController">
+        Call​View​Controller
+    </a>
+</dt>
+<dd>
+    <p>A view controller displayed for an ongoing call.</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="enumerations">
+        <h2>Enumerations</h2>
+        <dl>
+            <dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/AudioOutput" title="enumeration - AudioOutput">
+        Audio​Output
+    </a>
+</dt>
+<dd>
+    <p>Describes possible options for audio playback during the call.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/AudioRoutingType" title="enumeration - AudioRoutingType">
+        Audio​Routing​Type
+    </a>
+</dt>
+<dd>
+    <p>Describes type of an audio routing option.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallStatus" title="enumeration - CallStatus">
+        Call​Status
+    </a>
+</dt>
+<dd>
+    <p>Represents all possible states of the call.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/AgentStatusError" title="enumeration - AgentStatusError">
+        Agent​Status​Error
+    </a>
+</dt>
+<dd>
+    <p>Represents errors occuring during <code>lineStatus</code> check.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/RecordingConsent" title="enumeration - RecordingConsent">
+        Recording​Consent
+    </a>
+</dt>
+<dd>
+    <p>Represents digital line's recording consent configuration.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/RecordingConsentAnswer" title="enumeration - RecordingConsentAnswer">
+        Recording​Consent​Answer
+    </a>
+</dt>
+<dd>
+    <p>Represents the answer received from end user about recording the call.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkCallError" title="enumeration - TalkCallError">
+        Talk​Call​Error
+    </a>
+</dt>
+<dd>
+    <p>Represents errors occuring for a <code>failed</code> or <code>disconnected</code> call.</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="protocols">
+        <h2>Protocols</h2>
+        <dl>
+            <dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/AudioRoutingOption" title="protocol - AudioRoutingOption">
+        Audio​Routing​Option
+    </a>
+</dt>
+<dd>
+    <p>Describes possible options for routing call's audio input and output.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallData" title="protocol - CallData">
+        Call​Data
+    </a>
+</dt>
+<dd>
+    <p>Represents all required parameters to make a call.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallSummary" title="protocol - CallSummary">
+        Call​Summary
+    </a>
+</dt>
+<dd>
+    <p>Represents details of a finished call.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/LineStatus" title="protocol - LineStatus">
+        Line​Status
+    </a>
+</dt>
+<dd>
+    <p>Comprehensive information about status of digital line.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkCoreProvider" title="protocol - TalkCoreProvider">
+        Talk​Core​Provider
+    </a>
+</dt>
+<dd>
+    <p>Main <code>Talk</code> provider, responsible for the core calling API functionality.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkFlowProvider" title="protocol - TalkFlowProvider">
+        Talk​Flow​Provider
+    </a>
+</dt>
+<dd>
+    <p>Call flow provider, responsible for effortlessly starting the call using SDK provided screens and APIs.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkScreenProvider" title="protocol - TalkScreenProvider">
+        Talk​Screen​Provider
+    </a>
+</dt>
+<dd>
+    <p>Screen provider, responsible for creating preconfigured and ready to use call configuration and call view controllers.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/TalkCall" title="protocol - TalkCall">
+        Talk​Call
+    </a>
+</dt>
+<dd>
+    <p>Represents a call created by Talk SDK.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallConfigurationScreen" title="protocol - CallConfigurationScreen">
+        Call​Configuration​Screen
+    </a>
+</dt>
+<dd>
+    <p>A screen presented before making a call, used to ask the user about necessary permissions that need to be granted.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallLoadingView" title="protocol - CallLoadingView">
+        Call​Loading​View
+    </a>
+</dt>
+<dd>
+    <p>Represent the loading view with activity indicator on the call screen.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallErrorView" title="protocol - CallErrorView">
+        Call​Error​View
+    </a>
+</dt>
+<dd>
+    <p>Represent the error view with <code>retry</code> and <code>cancel</code> buttons.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallTimerView" title="protocol - CallTimerView">
+        Call​Timer​View
+    </a>
+</dt>
+<dd>
+    <p>Represent the timer view with a label showing call's duration.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallButtonsView" title="protocol - CallButtonsView">
+        Call​Buttons​View
+    </a>
+</dt>
+<dd>
+    <p>Represent the bottom buttons view in call screen.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/CallScreen" title="protocol - CallScreen">
+        Call​Screen
+    </a>
+</dt>
+<dd>
+    <p>A screen presented for an ongoing call.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/MicrophonePermissionScreen" title="protocol - MicrophonePermissionScreen">
+        Microphone​Permission​Screen
+    </a>
+</dt>
+<dd>
+    <p>Screen handling microphone permission configuration.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/talk_sdk_ios/docs/2.0.0/RecordingConsentScreen" title="protocol - RecordingConsentScreen">
+        Recording​Consent​Screen
+    </a>
+</dt>
+<dd>
+    <p>Screen handling recording consent.</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="typealiases">
+        <h2>Typealiases</h2>
+        <dl>
+            <dt class="typealias">
+    <a href="/talk_sdk_ios/docs/2.0.0/DigitalLine" title="typealias - DigitalLine">
+        Digital​Line
+    </a>
+</dt>
+<dd>
+    <p>Name of digital line.</p>
+
+</dd>
+        </dl>
+    </section>
+<section id="extensions">
+    <h2>Extensions</h2>
+    <dl>
+    <dt class="extension">
+    <a href="/talk_sdk_ios/docs/2.0.0/AVAudioSessionPortDescription">AVAudioSessionPortDescription</a>
+</dt>
+<dd></dd>
+    </dl>
+<section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-04-24T15:40:27+0200">April 24, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

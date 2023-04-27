@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkSDK-2.0.0 - RecordingConsentScreen</title>
+    <link rel="stylesheet" type="text/css" href="/talk_sdk_ios/docs/2.0.0/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/talk_sdk_ios/docs/2.0.0">
+            <strong>
+                TalkSDK-2.0.0
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#requirements">Requirements</a><ul><li class="variable"><a href="#recordingconsentscreen.backgroundcolor">background​Color</a></li><li class="variable"><a href="#recordingconsentscreen.titlelabel">title​Label</a></li><li class="variable"><a href="#recordingconsentscreen.messagelabel">message​Label</a></li><li class="variable"><a href="#recordingconsentscreen.startcallbutton">start​Call​Button</a></li><li class="variable"><a href="#recordingconsentscreen.cancelbutton">cancel​Button</a></li><li class="variable"><a href="#recordingconsentscreen.consentswitchview">consent​Switch​View</a></li><li class="variable"><a href="#recordingconsentscreen.consentswitch">consent​Switch</a></li><li class="variable"><a href="#recordingconsentscreen.consentdescriptionlabel">consent​Description​Label</a></li><li class="variable"><a href="#recordingconsentscreen.activityindicatorview">activity​Indicator​View</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Protocol</small>
+    <code class="name">Recording​Consent​Screen</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">objc</span> <span class="keyword">public</span> <span class="keyword">protocol</span> <span class="type">RecordingConsentScreen</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Screen handling recording consent.</p>
+
+</div>
+<div class="discussion">
+    <p>The screen contains all UI elements of the view.
+It is shown only when the <code>Recording Consent</code> received from <code>lineStatus</code> has a value of <code>optIn</code> or <code>optOut</code>. Otherwise no user's answer is required and the screen is not presented.</p>
+
+<p>This view has customizable font, text colors, background color, etc.</p>
+
+<aside class="important" title="Important">
+    <p>You cannot change layout of elements. In case you need your own layout setup, use other SDK API methods and build your own <code>Recording Consent</code> view.</p>
+
+</aside>
+</div>
+
+
+
+
+    <section id="requirements">
+        <h2>Requirements</h2>
+
+        <div role="article" class="variable" id="recordingconsentscreen.backgroundcolor">
+    <h3>
+        <code>background​Color</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">backgroundColor</span>: <span class="type">UIColor</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Background color of the screen container.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.titlelabel">
+    <h3>
+        <code>title​Label</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">titleLabel</span>: <span class="type">UILabel</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Label which shows main title. Example: &quot;Recording this call&quot;.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.messagelabel">
+    <h3>
+        <code>message​Label</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">messageLabel</span>: <span class="type">UILabel</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Label which shows description message under the title label.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.startcallbutton">
+    <h3>
+        <code>start​Call​Button</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">startCallButton</span>: <span class="type">UIButton</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Button which calls <code>startCallHandler</code> handler.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.cancelbutton">
+    <h3>
+        <code>cancel​Button</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">cancelButton</span>: <span class="type">UIButton</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Cancel Button which cancels all the flow and calls <code>cancelHandler</code>.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.consentswitchview">
+    <h3>
+        <code>consent​Switch​View</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">consentSwitchView</span>: <span class="type">UIView</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>The view which contains consent <code>UISwitch</code> and description label.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.consentswitch">
+    <h3>
+        <code>consent​Switch</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">consentSwitch</span>: <span class="type">UISwitch</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Switch which reflects user's <code>RecordingConsentAnswer</code>. The <code>on</code> state equals to <code>.optOut</code>, and <code>off</code> state to <code>.optIn</code>.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.consentdescriptionlabel">
+    <h3>
+        <code>consent​Description​Label</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">consentDescriptionLabel</span>: <span class="type">UILabel</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Label which message regarding uiswitch. Example: &quot;I agree to this call being recorder&quot;.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="recordingconsentscreen.activityindicatorview">
+    <h3>
+        <code>activity​Indicator​View</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">var</span> <span class="variable">activityIndicatorView</span>: <span class="type">UIActivityIndicatorView</span>!  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Indicator which is shown when fetching digital line's recording consent configuration.</p>
+
+</div>
+</div>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-04-24T15:40:27+0200">April 24, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>
