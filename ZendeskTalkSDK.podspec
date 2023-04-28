@@ -16,12 +16,12 @@ Pod::Spec.new do |s|
     LICENSE
   }
   s.author       = 'Zendesk'
-  s.platform     = :ios, '10.0'
+  s.platform     = :ios, '11.0'
   s.requires_arc = true
   s.swift_version = '5.2.4'
   s.source       = { :git => "https://github.com/zendesk/talk_sdk_ios.git", :tag => s.version }
-  s.vendored_frameworks = 'TalkSDK.framework'
-  s.preserve_paths = 'TalkSDK.framework', 'TalkSDK.dSYMs/*.dSYM'
-  s.dependency 'ZendeskCoreSDK'
-  s.dependency 'TwilioVoice', '~> 5.3.1'
+  s.vendored_frameworks = 'TalkSDK.xcframework'
+  s.preserve_paths = 'TalkSDK.xcframework', 'TalkSDK.dSYMs/*.dSYM'
+  s.dependency 'ZendeskCoreSDK', '2.5.1'
+  s.dependency 'TwilioVoice', '6.5.0'
 end
