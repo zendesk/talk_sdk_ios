@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		rJCc5tQZwHOmQynQvBICg+2tXfw=
+		JxqGHTvB8E+0JnLpSmQJLP0yZQk=
 		</data>
 		<key>CallConfigurationViewController.nib</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Headers/TalkSDK-Swift.h</key>
 		<data>
-		iPCbpcwVpD+kiK2nXNUvOcXLL/0=
+		xQYB2v3Hn5Aa305+tqaYbAuIkKQ=
 		</data>
 		<key>Headers/TalkSDK.h</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		dkBH/bMeSDzLflC6qtogPnjx+Fc=
+		2xYyxHF8DqLAh34XtzeklolKmyo=
 		</data>
 		<key>MicrophonePermissionViewController.nib</key>
 		<data>
@@ -46,43 +46,43 @@
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		2oDiZiYSxBpNlpdMi3IKBm+wmqs=
+		loQ6j1equAoXGm+EiZnrc+1akBI=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		ZnYy1CMzYVXLZzoaswzPrLTWxkg=
+		Z1lEgVNkKKdF/H9s4o4j0ZlD/jQ=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		KyJK1lHgUcO5PAawyHwPjPnhlxs=
+		Mr4vv17jDtPrZhsQDa8ShDscMlk=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		ZnYy1CMzYVXLZzoaswzPrLTWxkg=
+		Z1lEgVNkKKdF/H9s4o4j0ZlD/jQ=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		9dw0W7aXEJ7U/xAIEIBBJe5SgSI=
+		4TT/AbBwje13xbEL2bpr/mXBYRE=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		2oDiZiYSxBpNlpdMi3IKBm+wmqs=
+		loQ6j1equAoXGm+EiZnrc+1akBI=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		3xdJUdoRXaS9yoPzWzn31cWHTJ8=
+		tL76TEHW1G2UAEQpjkGXA5gJLeY=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		T8xA+kGxjKrOiukqz8VapBNrcRI=
+		L8313Vq9GZqvR9B90/MSr6qQDkU=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		3xdJUdoRXaS9yoPzWzn31cWHTJ8=
+		tL76TEHW1G2UAEQpjkGXA5gJLeY=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		XH3sFLuZuRD3iICxpJdHwrVuQxM=
+		T6yn1qqkSUSiX+AblUTmXqk5Deg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -433,7 +433,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tbBw2+3NS2Cd8mhol/Op3mWSmAM=
+			JEbpmc8+X07QarJLAMAUl0dX3t0=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -454,7 +454,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uQq2rpmmVpSi+x4O/RcBGVtf2e9UHchNfgyFOUl5hCE=
+			4ASfOnWz0QCHpfY4/jRsiq89WsVslMrqM81JhPqahyY=
 			</data>
 		</dict>
 		<key>CallConfigurationViewController.nib</key>
@@ -496,7 +496,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rOO+xlniFwJe0cGVLkuPouxQpt8wrwph63bNlYm6obI=
+			NLCHbLUgYErjCUCRw2rlnymk3O9EfEd/ioQrc1/wZtk=
 			</data>
 		</dict>
 		<key>Headers/TalkSDK.h</key>
@@ -517,70 +517,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LVlnuAyb036ZGa/0JcZVcOoJ8TR2cuRSFI1gGI2GeSQ=
+			/KLIaMCknMNSrD5m/jxP7Fo629Go6YGD8FDQQ2TmoOk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Kpr9kw4h2RkuLSOY28Ai2WLC+GzQjN3110JjtHANh3I=
+			qjmZs/o3r1bSUw/rbijRErPT3GAbadNH/Pj6JdA756g=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ygBV8hebcn5RbykEIyKu+r32sRD2ydf4uHC73bRaE94=
+			ISi0Zuvq7zDXJqIFwy9a7arrUJqZnMt+C8Y4x8Awu/s=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Kpr9kw4h2RkuLSOY28Ai2WLC+GzQjN3110JjtHANh3I=
+			qjmZs/o3r1bSUw/rbijRErPT3GAbadNH/Pj6JdA756g=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			67oHF/FkUo0i+H7Ao2EtAQKwfeV6ElrvzYYPgQmo+ZY=
+			JhGaOw4AjJicIqX0NvZBw4J7iT/k7i3F4tLcetjXFPI=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LVlnuAyb036ZGa/0JcZVcOoJ8TR2cuRSFI1gGI2GeSQ=
+			/KLIaMCknMNSrD5m/jxP7Fo629Go6YGD8FDQQ2TmoOk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yIHaZ4sS0Qlf6c879jmgysPJx0633jBM4/3jZ+BTLd0=
+			qFPOfNq0z7X6IZzfe8IU+uzwgZhYmZs94+kLv8+wCzY=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o4ZqdGEuFCzP3hT7N5k8waeyz2uNbEr1s00Up0a78jg=
+			85WeOYJIhzUHA5osgpmnD7HWfJG5a5ICq5iLfqjVhto=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yIHaZ4sS0Qlf6c879jmgysPJx0633jBM4/3jZ+BTLd0=
+			qFPOfNq0z7X6IZzfe8IU+uzwgZhYmZs94+kLv8+wCzY=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ynC4q6OPrPaAPShRk5VJs+jY/tJVqlHtLcFs2Wde5M8=
+			nswH91gZgr2ttEOk/zDmltUPB+yDQzvCWRIbJ98oc+M=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -941,7 +941,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sFqXcxkr22ohXdmUZQq/d/sk2KzVn6s/oEnsAix8NAI=
+			GSZF4gXqavrvdq86pVWJebFCTT7Z28yh5Ak4NoIzIMw=
 			</data>
 			<key>optional</key>
 			<true/>

@@ -477,7 +477,6 @@ SWIFT_CLASS("_TtC7TalkSDK18CallViewController")
 
 @class AVRoutePickerView;
 
-SWIFT_AVAILABILITY(ios,introduced=11.0)
 @interface CallViewController (SWIFT_EXTENSION(TalkSDK)) <AVRoutePickerViewDelegate>
 - (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
 - (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView * _Nonnull)routePickerView;
