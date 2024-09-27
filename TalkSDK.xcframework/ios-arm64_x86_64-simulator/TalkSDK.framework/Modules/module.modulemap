@@ -1,7 +1,7 @@
 framework module TalkSDK {
   umbrella header "TalkSDK.h"
-
   export *
+
   module * { export * }
 }
 

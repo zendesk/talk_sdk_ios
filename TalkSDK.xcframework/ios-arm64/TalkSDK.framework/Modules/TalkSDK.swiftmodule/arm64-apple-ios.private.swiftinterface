@@ -1,12 +1,14 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
-// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name TalkSDK
-// swift-module-flags-ignorable: -enable-bare-slash-regex
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name TalkSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import AVFoundation
 import AVKit
+import DeveloperToolsSupport
 import Foundation
 import MediaPlayer
 import Swift
+import SwiftUI
 @_exported import TalkSDK
 import TwilioVoice
 import UIKit.UIActivityIndicatorView
@@ -19,11 +21,12 @@ import UIKit.UIViewController
 import ZendeskCoreSDK
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 public protocol TalkScreenProvider : AnyObject {
   typealias CallScreenViewController = (UIKit.UIViewController & TalkSDK.CallScreen)
   typealias CallConfigurationScreenViewController = (UIKit.UIViewController & TalkSDK.CallConfigurationScreen)
-  func makeCallConfigurationViewController(for digitalLine: Swift.String) -> Self.CallConfigurationScreenViewController
-  func makeCallViewController(with callData: TalkSDK.CallData, callDidFinishHandler: @escaping (Self.CallScreenViewController, TalkSDK.CallSummary) -> Swift.Void) -> Self.CallScreenViewController
+  func makeCallConfigurationViewController(for digitalLine: Swift.String) -> any UIKit.UIViewController & TalkSDK.CallConfigurationScreen
+  func makeCallViewController(with callData: any TalkSDK.CallData, callDidFinishHandler: @escaping (any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary) -> Swift.Void) -> any UIKit.UIViewController & TalkSDK.CallScreen
 }
 public enum AgentStatusError : Swift.Int, Swift.Error {
   case digitalLineNotFound
@@ -57,14 +60,14 @@ public enum AgentStatusError : Swift.Int, Swift.Error {
   @objc var duration: Foundation.TimeInterval { get }
   @objc func disconnect()
   @objc var audioOutput: TalkSDK.AudioOutput { get set }
-  @objc var audioRouting: TalkSDK.AudioRoutingOption? { get set }
-  @objc var availableAudioRoutingOptions: [TalkSDK.AudioRoutingOption] { get }
+  @objc var audioRouting: (any TalkSDK.AudioRoutingOption)? { get set }
+  @objc var availableAudioRoutingOptions: [any TalkSDK.AudioRoutingOption] { get }
 }
 public protocol TalkCoreProvider : AnyObject {
-  typealias LineStatusResult = Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>
+  typealias LineStatusResult = Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>
   typealias StatusChangeHandler = (TalkSDK.CallStatus, TalkSDK.TalkCallError?) -> Swift.Void
   func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping (Self.LineStatusResult) -> Swift.Void)
-  func call(callData: TalkSDK.CallData, statusChangeHandler: @escaping Self.StatusChangeHandler) -> TalkSDK.TalkCall
+  func call(callData: any TalkSDK.CallData, statusChangeHandler: @escaping Self.StatusChangeHandler) -> any TalkSDK.TalkCall
 }
 @_hasMissingDesignatedInitializers @objc(ZDKTalk) final public class Talk : ObjectiveC.NSObject {
   @objc convenience public init(zendesk: ZendeskCoreSDK.Zendesk)
@@ -74,20 +77,20 @@ extension TalkSDK.Talk : TalkSDK.TalkFlowProvider {
   @objc(startCallToDigitalLine:) final public func startCall(to digitalLine: TalkSDK.DigitalLine)
 }
 extension TalkSDK.Talk : TalkSDK.TalkScreenProvider {
-  @objc final public func makeCallConfigurationViewController(for digitalLine: Swift.String) -> TalkSDK.Talk.CallConfigurationScreenViewController
-  final public func makeCallViewController(with callData: TalkSDK.CallData, callDidFinishHandler: @escaping (TalkSDK.Talk.CallScreenViewController, TalkSDK.CallSummary) -> Swift.Void) -> TalkSDK.Talk.CallScreenViewController
+  @objc final public func makeCallConfigurationViewController(for digitalLine: Swift.String) -> any UIKit.UIViewController & TalkSDK.CallConfigurationScreen
+  final public func makeCallViewController(with callData: any TalkSDK.CallData, callDidFinishHandler: @escaping (any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary) -> Swift.Void) -> any UIKit.UIViewController & TalkSDK.CallScreen
 }
 extension TalkSDK.Talk : TalkSDK.TalkCoreProvider {
-  final public func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping (Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> Swift.Void)
-  final public func call(callData: TalkSDK.CallData, statusChangeHandler: @escaping TalkSDK.Talk.StatusChangeHandler) -> TalkSDK.TalkCall
+  final public func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping (Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> Swift.Void)
+  final public func call(callData: any TalkSDK.CallData, statusChangeHandler: @escaping TalkSDK.Talk.StatusChangeHandler) -> any TalkSDK.TalkCall
 }
 extension TalkSDK.Talk {
   @available(swift, obsoleted: 1.0)
-  @objc final public func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping (TalkSDK.LineStatus?, Foundation.NSError?) -> Swift.Void)
+  @objc final public func lineStatus(digitalLine: TalkSDK.DigitalLine, completion: @escaping ((any TalkSDK.LineStatus)?, Foundation.NSError?) -> Swift.Void)
   @available(swift, obsoleted: 1.0)
-  @objc final public func call(callData: TalkSDK.CallData, statusChangeHandler: @escaping (TalkSDK.CallStatus, Foundation.NSError?) -> Swift.Void) -> TalkSDK.TalkCall
+  @objc final public func call(callData: any TalkSDK.CallData, statusChangeHandler: @escaping (TalkSDK.CallStatus, Foundation.NSError?) -> Swift.Void) -> any TalkSDK.TalkCall
   @available(swift, obsoleted: 1.0)
-  @objc final public func makeCallViewController(with callData: TalkSDK.CallData, callDidFinishHandler: @escaping (_ duration: Foundation.TimeInterval, _ error: Foundation.NSError?) -> Swift.Void) -> UIKit.UIViewController & TalkSDK.CallScreen
+  @objc final public func makeCallViewController(with callData: any TalkSDK.CallData, callDidFinishHandler: @escaping (_ duration: Foundation.TimeInterval, _ error: Foundation.NSError?) -> Swift.Void) -> any UIKit.UIViewController & TalkSDK.CallScreen
 }
 @objc public enum AudioOutput : Swift.Int {
   case speaker
@@ -98,29 +101,29 @@ extension TalkSDK.Talk {
     get
   }
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class CallViewController : UIKit.UIViewController, TalkSDK.CallScreen {
-  @_Concurrency.MainActor(unsafe) @objc final public var callLoadingView: UIKit.UIView & TalkSDK.CallLoadingView {
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CallViewController : UIKit.UIViewController, TalkSDK.CallScreen {
+  @_Concurrency.MainActor @preconcurrency @objc final public var callLoadingView: any UIKit.UIView & TalkSDK.CallLoadingView {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc final public var callErrorView: UIKit.UIView & TalkSDK.CallErrorView {
+  @_Concurrency.MainActor @preconcurrency @objc final public var callErrorView: any UIKit.UIView & TalkSDK.CallErrorView {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc final public var callTimerView: UIKit.UIView & TalkSDK.CallTimerView {
+  @_Concurrency.MainActor @preconcurrency @objc final public var callTimerView: any UIKit.UIView & TalkSDK.CallTimerView {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc final public var callButtonsView: UIKit.UIView & TalkSDK.CallButtonsView {
+  @_Concurrency.MainActor @preconcurrency @objc final public var callButtonsView: any UIKit.UIView & TalkSDK.CallButtonsView {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) convenience public init(callData: TalkSDK.CallData, talk: TalkSDK.Talk)
-  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc final public func disconnect()
+  @_Concurrency.MainActor @preconcurrency convenience public init(callData: any TalkSDK.CallData, talk: TalkSDK.Talk)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc final public func disconnect()
   @objc deinit
 }
 extension TalkSDK.CallViewController : AVKit.AVRoutePickerViewDelegate {
-  @_Concurrency.MainActor(unsafe) @objc final public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
-  @_Concurrency.MainActor(unsafe) @objc final public func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
+  @_Concurrency.MainActor @preconcurrency @objc final public func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
+  @_Concurrency.MainActor @preconcurrency @objc final public func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVKit.AVRoutePickerView)
 }
 @objc public protocol CallLoadingView {
   @objc var titleLabel: UIKit.UILabel! { get }
@@ -145,10 +148,10 @@ extension TalkSDK.CallViewController : AVKit.AVRoutePickerViewDelegate {
   @objc var muteTitleLabel: UIKit.UILabel! { get }
 }
 @objc public protocol CallScreen {
-  @objc var callLoadingView: UIKit.UIView & TalkSDK.CallLoadingView { get }
-  @objc var callErrorView: UIKit.UIView & TalkSDK.CallErrorView { get }
-  @objc var callTimerView: UIKit.UIView & TalkSDK.CallTimerView { get }
-  @objc var callButtonsView: UIKit.UIView & TalkSDK.CallButtonsView { get }
+  @objc var callLoadingView: any UIKit.UIView & TalkSDK.CallLoadingView { get }
+  @objc var callErrorView: any UIKit.UIView & TalkSDK.CallErrorView { get }
+  @objc var callTimerView: any UIKit.UIView & TalkSDK.CallTimerView { get }
+  @objc var callButtonsView: any UIKit.UIView & TalkSDK.CallButtonsView { get }
   @objc func disconnect()
 }
 @objc public enum AudioRoutingType : Swift.Int {
@@ -243,29 +246,29 @@ public protocol TalkFlowProvider : AnyObject {
 @objc public protocol CallConfigurationScreen {
   typealias CancelRequestHandler = () -> Swift.Void
   typealias StartCallHandler = (TalkSDK.RecordingConsentAnswer) -> Swift.Void
-  @objc var microphoneScreen: TalkSDK.MicrophonePermissionScreen { get }
-  @objc var recordingConsentScreen: TalkSDK.RecordingConsentScreen { get }
+  @objc var microphoneScreen: any TalkSDK.MicrophonePermissionScreen { get }
+  @objc var recordingConsentScreen: any TalkSDK.RecordingConsentScreen { get }
   @objc var cancelHandler: Self.CancelRequestHandler? { get set }
   @objc var startCallHandler: Self.StartCallHandler? { get set }
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class CallConfigurationViewController : UIKit.UIViewController, TalkSDK.CallConfigurationScreen {
-  @_Concurrency.MainActor(unsafe) @objc final public var microphoneScreen: TalkSDK.MicrophonePermissionScreen {
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class CallConfigurationViewController : UIKit.UIViewController, TalkSDK.CallConfigurationScreen {
+  @_Concurrency.MainActor @preconcurrency @objc final public var microphoneScreen: any TalkSDK.MicrophonePermissionScreen {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc final public var recordingConsentScreen: TalkSDK.RecordingConsentScreen {
+  @_Concurrency.MainActor @preconcurrency @objc final public var recordingConsentScreen: any TalkSDK.RecordingConsentScreen {
     @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc final public var cancelHandler: TalkSDK.CallConfigurationViewController.CancelRequestHandler? {
-    @objc get
-    @objc set
-  }
-  @_Concurrency.MainActor(unsafe) @objc final public var startCallHandler: TalkSDK.CallConfigurationViewController.StartCallHandler? {
+  @_Concurrency.MainActor @preconcurrency @objc final public var cancelHandler: TalkSDK.CallConfigurationViewController.CancelRequestHandler? {
     @objc get
     @objc set
   }
-  @_Concurrency.MainActor(unsafe) convenience public init(digitalLine: TalkSDK.DigitalLine, talk: TalkSDK.Talk)
-  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc final public var startCallHandler: TalkSDK.CallConfigurationViewController.StartCallHandler? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency convenience public init(digitalLine: TalkSDK.DigitalLine, talk: TalkSDK.Talk)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewWillAppear(_ animated: Swift.Bool)
   @objc deinit
 }
 @objc public protocol RecordingConsentScreen {

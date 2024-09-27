@@ -1,8 +1,8 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "TopLevel",
-    "printedName": "TopLevel",
+    "name": "TalkSDK",
+    "printedName": "TalkSDK",
     "children": [
       {
         "kind": "Import",
@@ -84,7 +84,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIViewController & TalkSDK.CallConfigurationScreen"
+                "printedName": "any UIKit.UIViewController & TalkSDK.CallConfigurationScreen"
               },
               {
                 "kind": "TypeNominal",
@@ -114,18 +114,18 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIViewController & TalkSDK.CallScreen"
+                "printedName": "any UIKit.UIViewController & TalkSDK.CallScreen"
               },
               {
                 "kind": "TypeNominal",
                 "name": "CallData",
-                "printedName": "TalkSDK.CallData",
+                "printedName": "any TalkSDK.CallData",
                 "usr": "c:@M@TalkSDK@objc(pl)CallData"
               },
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(UIKit.UIViewController & TalkSDK.CallScreen, TalkSDK.CallSummary) -> ()",
+                "printedName": "(any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -135,17 +135,17 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Tuple",
-                    "printedName": "(UIKit.UIViewController & TalkSDK.CallScreen, TalkSDK.CallSummary)",
+                    "printedName": "(any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary)",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ProtocolComposition",
-                        "printedName": "UIKit.UIViewController & TalkSDK.CallScreen"
+                        "printedName": "any UIKit.UIViewController & TalkSDK.CallScreen"
                       },
                       {
                         "kind": "TypeNominal",
                         "name": "CallSummary",
-                        "printedName": "TalkSDK.CallSummary",
+                        "printedName": "any TalkSDK.CallSummary",
                         "usr": "s:7TalkSDK11CallSummaryP"
                       }
                     ]
@@ -176,6 +176,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -411,6 +427,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -582,6 +612,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -937,6 +983,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -1253,12 +1313,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "TalkSDK.AudioRoutingOption?",
+                "printedName": "(any TalkSDK.AudioRoutingOption)?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "AudioRoutingOption",
-                    "printedName": "TalkSDK.AudioRoutingOption",
+                    "printedName": "any TalkSDK.AudioRoutingOption",
                     "usr": "c:@M@TalkSDK@objc(pl)AudioRoutingOption"
                   }
                 ],
@@ -1283,12 +1343,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "TalkSDK.AudioRoutingOption?",
+                    "printedName": "(any TalkSDK.AudioRoutingOption)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "AudioRoutingOption",
-                        "printedName": "TalkSDK.AudioRoutingOption",
+                        "printedName": "any TalkSDK.AudioRoutingOption",
                         "usr": "c:@M@TalkSDK@objc(pl)AudioRoutingOption"
                       }
                     ],
@@ -1321,12 +1381,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "TalkSDK.AudioRoutingOption?",
+                    "printedName": "(any TalkSDK.AudioRoutingOption)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "AudioRoutingOption",
-                        "printedName": "TalkSDK.AudioRoutingOption",
+                        "printedName": "any TalkSDK.AudioRoutingOption",
                         "usr": "c:@M@TalkSDK@objc(pl)AudioRoutingOption"
                       }
                     ],
@@ -1356,12 +1416,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[TalkSDK.AudioRoutingOption]",
+                "printedName": "[any TalkSDK.AudioRoutingOption]",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "AudioRoutingOption",
-                    "printedName": "TalkSDK.AudioRoutingOption",
+                    "printedName": "any TalkSDK.AudioRoutingOption",
                     "usr": "c:@M@TalkSDK@objc(pl)AudioRoutingOption"
                   }
                 ],
@@ -1386,12 +1446,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[TalkSDK.AudioRoutingOption]",
+                    "printedName": "[any TalkSDK.AudioRoutingOption]",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "AudioRoutingOption",
-                        "printedName": "TalkSDK.AudioRoutingOption",
+                        "printedName": "any TalkSDK.AudioRoutingOption",
                         "usr": "c:@M@TalkSDK@objc(pl)AudioRoutingOption"
                       }
                     ],
@@ -1424,6 +1484,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -1490,7 +1566,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> ()",
+                "printedName": "(Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1500,12 +1576,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Result",
-                    "printedName": "Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>",
+                    "printedName": "Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "LineStatus",
-                        "printedName": "TalkSDK.LineStatus",
+                        "printedName": "any TalkSDK.LineStatus",
                         "usr": "c:@M@TalkSDK@objc(pl)LineStatus"
                       },
                       {
@@ -1541,13 +1617,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "TalkCall",
-                "printedName": "TalkSDK.TalkCall",
+                "printedName": "any TalkSDK.TalkCall",
                 "usr": "c:@M@TalkSDK@objc(pl)TalkCall"
               },
               {
                 "kind": "TypeNominal",
                 "name": "CallData",
-                "printedName": "TalkSDK.CallData",
+                "printedName": "any TalkSDK.CallData",
                 "usr": "c:@M@TalkSDK@objc(pl)CallData"
               },
               {
@@ -1613,6 +1689,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -1682,7 +1774,7 @@
                 "kind": "TypeNominal",
                 "name": "Zendesk",
                 "printedName": "ZendeskCoreSDK.Zendesk",
-                "usr": "c:@M@ZendeskCoreSDK@objc(cs)ZDKZendesk"
+                "usr": "c:@M@ZendeskCoreSDK@objc(cs)ZDKClassicZendesk"
               }
             ],
             "declKind": "Constructor",
@@ -1763,7 +1855,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIViewController & TalkSDK.CallConfigurationScreen"
+                "printedName": "any UIKit.UIViewController & TalkSDK.CallConfigurationScreen"
               },
               {
                 "kind": "TypeNominal",
@@ -1794,18 +1886,18 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIViewController & TalkSDK.CallScreen"
+                "printedName": "any UIKit.UIViewController & TalkSDK.CallScreen"
               },
               {
                 "kind": "TypeNominal",
                 "name": "CallData",
-                "printedName": "TalkSDK.CallData",
+                "printedName": "any TalkSDK.CallData",
                 "usr": "c:@M@TalkSDK@objc(pl)CallData"
               },
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(UIKit.UIViewController & TalkSDK.CallScreen, TalkSDK.CallSummary) -> ()",
+                "printedName": "(any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1815,17 +1907,17 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Tuple",
-                    "printedName": "(UIKit.UIViewController & TalkSDK.CallScreen, TalkSDK.CallSummary)",
+                    "printedName": "(any UIKit.UIViewController & TalkSDK.CallScreen, any TalkSDK.CallSummary)",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ProtocolComposition",
-                        "printedName": "UIKit.UIViewController & TalkSDK.CallScreen"
+                        "printedName": "any UIKit.UIViewController & TalkSDK.CallScreen"
                       },
                       {
                         "kind": "TypeNominal",
                         "name": "CallSummary",
-                        "printedName": "TalkSDK.CallSummary",
+                        "printedName": "any TalkSDK.CallSummary",
                         "usr": "s:7TalkSDK11CallSummaryP"
                       }
                     ]
@@ -1864,7 +1956,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> ()",
+                "printedName": "(Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1874,12 +1966,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Result",
-                    "printedName": "Swift.Result<TalkSDK.LineStatus, TalkSDK.AgentStatusError>",
+                    "printedName": "Swift.Result<any TalkSDK.LineStatus, TalkSDK.AgentStatusError>",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "LineStatus",
-                        "printedName": "TalkSDK.LineStatus",
+                        "printedName": "any TalkSDK.LineStatus",
                         "usr": "c:@M@TalkSDK@objc(pl)LineStatus"
                       },
                       {
@@ -1914,13 +2006,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "TalkCall",
-                "printedName": "TalkSDK.TalkCall",
+                "printedName": "any TalkSDK.TalkCall",
                 "usr": "c:@M@TalkSDK@objc(pl)TalkCall"
               },
               {
                 "kind": "TypeNominal",
                 "name": "CallData",
-                "printedName": "TalkSDK.CallData",
+                "printedName": "any TalkSDK.CallData",
                 "usr": "c:@M@TalkSDK@objc(pl)CallData"
               },
               {
@@ -1995,24 +2087,17 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "TalkFlowProvider",
-            "printedName": "TalkFlowProvider",
-            "usr": "s:7TalkSDK0A12FlowProviderP",
-            "mangledName": "$s7TalkSDK0A12FlowProviderP"
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           },
           {
             "kind": "Conformance",
-            "name": "TalkScreenProvider",
-            "printedName": "TalkScreenProvider",
-            "usr": "s:7TalkSDK0A14ScreenProviderP",
-            "mangledName": "$s7TalkSDK0A14ScreenProviderP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "TalkCoreProvider",
-            "printedName": "TalkCoreProvider",
-            "usr": "s:7TalkSDK0A12CoreProviderP",
-            "mangledName": "$s7TalkSDK0A12CoreProviderP"
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -2062,6 +2147,27 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TalkFlowProvider",
+            "printedName": "TalkFlowProvider",
+            "usr": "s:7TalkSDK0A12FlowProviderP",
+            "mangledName": "$s7TalkSDK0A12FlowProviderP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TalkScreenProvider",
+            "printedName": "TalkScreenProvider",
+            "usr": "s:7TalkSDK0A14ScreenProviderP",
+            "mangledName": "$s7TalkSDK0A14ScreenProviderP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "TalkCoreProvider",
+            "printedName": "TalkCoreProvider",
+            "usr": "s:7TalkSDK0A12CoreProviderP",
+            "mangledName": "$s7TalkSDK0A12CoreProviderP"
           }
         ]
       },
@@ -2290,6 +2396,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -2430,7 +2550,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallLoadingView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallLoadingView"
               }
             ],
             "declKind": "Var",
@@ -2441,6 +2561,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Lazy",
               "AccessControl",
@@ -2455,7 +2576,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallLoadingView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallLoadingView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -2480,7 +2601,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallErrorView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallErrorView"
               }
             ],
             "declKind": "Var",
@@ -2491,6 +2612,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Lazy",
               "AccessControl",
@@ -2505,7 +2627,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallErrorView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallErrorView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -2530,7 +2652,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallTimerView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallTimerView"
               }
             ],
             "declKind": "Var",
@@ -2541,6 +2663,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Lazy",
               "AccessControl",
@@ -2555,7 +2678,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallTimerView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallTimerView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -2580,7 +2703,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallButtonsView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallButtonsView"
               }
             ],
             "declKind": "Var",
@@ -2591,6 +2714,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Lazy",
               "AccessControl",
@@ -2605,7 +2729,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallButtonsView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallButtonsView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -2636,7 +2760,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CallData",
-                "printedName": "TalkSDK.CallData",
+                "printedName": "any TalkSDK.CallData",
                 "usr": "c:@M@TalkSDK@objc(pl)CallData"
               },
               {
@@ -2651,6 +2775,7 @@
             "mangledName": "$s7TalkSDK18CallViewControllerC8callData4talkAcA0cG0_p_AA0A0Ctcfc",
             "moduleName": "TalkSDK",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "AccessControl",
               "Convenience"
@@ -2677,6 +2802,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl",
@@ -2710,6 +2836,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl"
@@ -2742,6 +2869,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl"
@@ -2767,6 +2895,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "AccessControl",
               "RawDocComment"
@@ -2823,6 +2952,7 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override"
             ],
@@ -2853,6 +2983,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -2884,6 +3015,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -2896,6 +3028,7 @@
         "mangledName": "$s7TalkSDK18CallViewControllerC",
         "moduleName": "TalkSDK",
         "declAttributes": [
+          "Preconcurrency",
           "Custom",
           "Final",
           "AccessControl",
@@ -2916,6 +3049,20 @@
             "printedName": "CallScreen",
             "usr": "c:@M@TalkSDK@objc(pl)CallScreen",
             "mangledName": "$s7TalkSDK10CallScreenP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -2965,6 +3112,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "UITraitChangeObservable",
+            "printedName": "UITraitChangeObservable",
+            "usr": "s:5UIKit23UITraitChangeObservableP",
+            "mangledName": "$s5UIKit23UITraitChangeObservableP"
           },
           {
             "kind": "Conformance",
@@ -3166,6 +3320,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -3442,6 +3612,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -3589,6 +3775,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -3994,6 +4196,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -4009,7 +4227,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallLoadingView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallLoadingView"
               }
             ],
             "declKind": "Var",
@@ -4030,7 +4248,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallLoadingView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallLoadingView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -4056,7 +4274,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallErrorView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallErrorView"
               }
             ],
             "declKind": "Var",
@@ -4077,7 +4295,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallErrorView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallErrorView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -4103,7 +4321,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallTimerView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallTimerView"
               }
             ],
             "declKind": "Var",
@@ -4124,7 +4342,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallTimerView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallTimerView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -4150,7 +4368,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "UIKit.UIView & TalkSDK.CallButtonsView"
+                "printedName": "any UIKit.UIView & TalkSDK.CallButtonsView"
               }
             ],
             "declKind": "Var",
@@ -4171,7 +4389,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "ProtocolComposition",
-                    "printedName": "UIKit.UIView & TalkSDK.CallButtonsView"
+                    "printedName": "any UIKit.UIView & TalkSDK.CallButtonsView"
                   }
                 ],
                 "declKind": "Accessor",
@@ -4225,6 +4443,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -4422,6 +4656,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -4572,6 +4820,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -4927,6 +5191,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -5186,6 +5464,20 @@
             "printedName": "CallData",
             "usr": "c:@M@TalkSDK@objc(pl)CallData",
             "mangledName": "$s7TalkSDK8CallDataP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -5463,6 +5755,20 @@
         ],
         "enumRawTypeName": "Int",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -5768,6 +6074,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -5923,6 +6243,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -6054,6 +6390,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -6170,6 +6522,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -6571,6 +6939,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -6613,7 +6997,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "MicrophonePermissionScreen",
-                "printedName": "TalkSDK.MicrophonePermissionScreen",
+                "printedName": "any TalkSDK.MicrophonePermissionScreen",
                 "usr": "c:@M@TalkSDK@objc(pl)MicrophonePermissionScreen"
               }
             ],
@@ -6635,7 +7019,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "MicrophonePermissionScreen",
-                    "printedName": "TalkSDK.MicrophonePermissionScreen",
+                    "printedName": "any TalkSDK.MicrophonePermissionScreen",
                     "usr": "c:@M@TalkSDK@objc(pl)MicrophonePermissionScreen"
                   }
                 ],
@@ -6662,7 +7046,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "RecordingConsentScreen",
-                "printedName": "TalkSDK.RecordingConsentScreen",
+                "printedName": "any TalkSDK.RecordingConsentScreen",
                 "usr": "c:@M@TalkSDK@objc(pl)RecordingConsentScreen"
               }
             ],
@@ -6684,7 +7068,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "RecordingConsentScreen",
-                    "printedName": "TalkSDK.RecordingConsentScreen",
+                    "printedName": "any TalkSDK.RecordingConsentScreen",
                     "usr": "c:@M@TalkSDK@objc(pl)RecordingConsentScreen"
                   }
                 ],
@@ -6989,6 +7373,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -7021,7 +7421,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "MicrophonePermissionScreen",
-                "printedName": "TalkSDK.MicrophonePermissionScreen",
+                "printedName": "any TalkSDK.MicrophonePermissionScreen",
                 "usr": "c:@M@TalkSDK@objc(pl)MicrophonePermissionScreen"
               }
             ],
@@ -7033,6 +7433,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -7045,7 +7446,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "MicrophonePermissionScreen",
-                    "printedName": "TalkSDK.MicrophonePermissionScreen",
+                    "printedName": "any TalkSDK.MicrophonePermissionScreen",
                     "usr": "c:@M@TalkSDK@objc(pl)MicrophonePermissionScreen"
                   }
                 ],
@@ -7070,7 +7471,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "RecordingConsentScreen",
-                "printedName": "TalkSDK.RecordingConsentScreen",
+                "printedName": "any TalkSDK.RecordingConsentScreen",
                 "usr": "c:@M@TalkSDK@objc(pl)RecordingConsentScreen"
               }
             ],
@@ -7082,6 +7483,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -7094,7 +7496,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "RecordingConsentScreen",
-                    "printedName": "TalkSDK.RecordingConsentScreen",
+                    "printedName": "any TalkSDK.RecordingConsentScreen",
                     "usr": "c:@M@TalkSDK@objc(pl)RecordingConsentScreen"
                   }
                 ],
@@ -7151,6 +7553,7 @@
               "HasInitialValue",
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "HasStorage",
               "AccessControl"
@@ -7312,6 +7715,7 @@
               "HasInitialValue",
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "HasStorage",
               "AccessControl"
@@ -7463,6 +7867,7 @@
             "mangledName": "$s7TalkSDK31CallConfigurationViewControllerC11digitalLine4talkACSS_AA0A0Ctcfc",
             "moduleName": "TalkSDK",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "Convenience",
               "AccessControl"
@@ -7489,6 +7894,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl"
@@ -7521,6 +7927,7 @@
             "declAttributes": [
               "Final",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl"
@@ -7577,6 +7984,7 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override"
             ],
@@ -7588,6 +7996,7 @@
         "mangledName": "$s7TalkSDK31CallConfigurationViewControllerC",
         "moduleName": "TalkSDK",
         "declAttributes": [
+          "Preconcurrency",
           "Custom",
           "AccessControl",
           "Final",
@@ -7608,6 +8017,20 @@
             "printedName": "CallConfigurationScreen",
             "usr": "c:@M@TalkSDK@objc(pl)CallConfigurationScreen",
             "mangledName": "$s7TalkSDK23CallConfigurationScreenP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -7657,6 +8080,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "UITraitChangeObservable",
+            "printedName": "UITraitChangeObservable",
+            "usr": "s:5UIKit23UITraitChangeObservableP",
+            "mangledName": "$s5UIKit23UITraitChangeObservableP"
           },
           {
             "kind": "Conformance",
@@ -8333,6 +8763,22 @@
           "AccessControl",
           "ObjC",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -8344,6 +8790,34 @@
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "TalkSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "TalkSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "TalkSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "DeveloperToolsSupport",
+        "printedName": "DeveloperToolsSupport",
+        "declKind": "Import",
+        "moduleName": "TalkSDK"
       },
       {
         "kind": "TypeDecl",
@@ -8365,6 +8839,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -8429,6 +8917,7 @@
         "declAttributes": [
           "Available",
           "ObjC",
+          "NonSendable",
           "Dynamic"
         ],
         "superclassUsr": "c:objc(cs)NSObject",
@@ -8438,6 +8927,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -8500,6 +9003,7 @@
         "intro_iOS": "2.0",
         "objc_name": "UILabel",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -8515,6 +9019,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -8566,10 +9084,10 @@
           },
           {
             "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
+            "name": "UITraitChangeObservable",
+            "printedName": "UITraitChangeObservable",
+            "usr": "s:5UIKit23UITraitChangeObservableP",
+            "mangledName": "$s5UIKit23UITraitChangeObservableP"
           },
           {
             "kind": "Conformance",
@@ -8577,6 +9095,13 @@
             "printedName": "__DefaultCustomPlaygroundQuickLookable",
             "usr": "s:s38__DefaultCustomPlaygroundQuickLookableP",
             "mangledName": "$ss38__DefaultCustomPlaygroundQuickLookableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
           }
         ]
       },
@@ -8591,6 +9116,7 @@
         "intro_iOS": "2.0",
         "objc_name": "UIButton",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -8609,6 +9135,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -8658,10 +9198,10 @@
           },
           {
             "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
+            "name": "UITraitChangeObservable",
+            "printedName": "UITraitChangeObservable",
+            "usr": "s:5UIKit23UITraitChangeObservableP",
+            "mangledName": "$s5UIKit23UITraitChangeObservableP"
           },
           {
             "kind": "Conformance",
@@ -8669,6 +9209,13 @@
             "printedName": "__DefaultCustomPlaygroundQuickLookable",
             "usr": "s:s38__DefaultCustomPlaygroundQuickLookableP",
             "mangledName": "$ss38__DefaultCustomPlaygroundQuickLookableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
           }
         ]
       },
@@ -8692,6 +9239,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -8763,6 +9324,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -8929,6 +9504,8 @@
         "declAttributes": [
           "Available",
           "ObjC",
+          "SynthesizedProtocol",
+          "Sendable",
           "Dynamic"
         ],
         "superclassUsr": "c:objc(cs)NSObject",
@@ -8938,6 +9515,27 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -9009,6 +9607,8 @@
         "declAttributes": [
           "Available",
           "ObjC",
+          "SynthesizedProtocol",
+          "Sendable",
           "Dynamic"
         ],
         "superclassUsr": "c:objc(cs)NSObject",
@@ -9019,6 +9619,27 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -9081,6 +9702,7 @@
         "intro_iOS": "2.0",
         "objc_name": "UIApplication",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -9095,6 +9717,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -9158,557 +9794,403 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 1723,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 2659,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 2713,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 2756,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 2845,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 2899,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3258,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3313,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3355,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3464,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3541,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 3627,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/ConsentView\/RecordingConsentViewController.swift",
-      "kind": "StringLiteral",
-      "offset": 632,
-      "length": 30,
-      "value": "\"TalkSDK.RecordingConsentViewController\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Constants.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Constants.swift",
       "kind": "StringLiteral",
       "offset": 707,
       "length": 6,
       "value": "\"Talk\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallProvider\/TwilioProvider\/CallDurationCounter.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallProvider\/TwilioProvider\/CallDurationCounter.swift",
       "kind": "IntegerLiteral",
       "offset": 852,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallDurationFormatter.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallDurationFormatter.swift",
       "kind": "StringLiteral",
       "offset": 736,
       "length": 6,
       "value": "\"0:00\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/HTTPHeaders.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/HTTPHeaders.swift",
       "kind": "Dictionary",
-      "offset": 853,
+      "offset": 858,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/LineStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/LineStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 831,
       "length": 7,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/LineStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 831,
-      "length": 7,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/LineStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 831,
-      "length": 7,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
       "kind": "IntegerLiteral",
       "offset": 856,
       "length": 12,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
       "kind": "IntegerLiteral",
       "offset": 930,
       "length": 12,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
       "kind": "IntegerLiteral",
       "offset": 1016,
       "length": 7,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
-      "kind": "IntegerLiteral",
-      "offset": 856,
-      "length": 12,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
-      "kind": "IntegerLiteral",
-      "offset": 930,
-      "length": 12,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCall.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1016,
-      "length": 7,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/MicrophonePermission\/MicrophonePermissionViewController.swift",
-      "kind": "StringLiteral",
-      "offset": 614,
-      "length": 34,
-      "value": "\"TalkSDK.MicrophonePermissionViewController\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/DismissMultipleModalsLogic.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/DismissMultipleModalsLogic.swift",
       "kind": "FloatLiteral",
       "offset": 844,
       "length": 4,
       "value": "0.25"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/UIColor+Extension.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/UIColor+Extension.swift",
       "kind": "BooleanLiteral",
       "offset": 684,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Talk.swift",
-      "kind": "StringLiteral",
-      "offset": 658,
-      "length": 4,
-      "value": "\"TalkSDK.Talk\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallViewController\/CallTimer.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallViewController\/CallTimer.swift",
       "kind": "FloatLiteral",
       "offset": 937,
       "length": 4,
       "value": "0.25"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioOutput.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioOutput.swift",
       "kind": "IntegerLiteral",
       "offset": 817,
       "length": 7,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioOutput.swift",
-      "kind": "IntegerLiteral",
-      "offset": 817,
-      "length": 7,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/AccessTokenService\/AccessTokenService.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/AccessTokenService\/AccessTokenService.swift",
       "kind": "StringLiteral",
       "offset": 663,
       "length": 52,
       "value": "\"\/api\/v2\/channels\/talk_embeddables\/sdk\/access_token\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallViewController\/CallViewController.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallViewController\/CallViewController.swift",
       "kind": "BooleanLiteral",
       "offset": 1735,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallViewController\/CallViewController.swift",
-      "kind": "StringLiteral",
-      "offset": 756,
-      "length": 18,
-      "value": "\"TalkSDK.CallViewController\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
       "kind": "IntegerLiteral",
       "offset": 797,
       "length": 19,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
       "kind": "IntegerLiteral",
       "offset": 885,
       "length": 17,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
-      "kind": "IntegerLiteral",
-      "offset": 797,
-      "length": 19,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
-      "kind": "IntegerLiteral",
-      "offset": 885,
-      "length": 17,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
-      "kind": "IntegerLiteral",
-      "offset": 797,
-      "length": 19,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/RecordingConsentError.swift",
-      "kind": "IntegerLiteral",
-      "offset": 885,
-      "length": 17,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioRoutingOption.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioRoutingOption.swift",
       "kind": "IntegerLiteral",
       "offset": 844,
       "length": 9,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/AudioRoutingOption.swift",
-      "kind": "IntegerLiteral",
-      "offset": 844,
-      "length": 9,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 749,
       "length": 9,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 804,
       "length": 12,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 867,
       "length": 6,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 922,
       "length": 12,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 979,
       "length": 11,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 749,
-      "length": 9,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 804,
-      "length": 12,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 867,
-      "length": 6,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 922,
-      "length": 12,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/CallStatus.swift",
-      "kind": "IntegerLiteral",
-      "offset": 979,
-      "length": 11,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/TalkCallData.swift",
-      "kind": "StringLiteral",
-      "offset": 692,
-      "length": 12,
-      "value": "\"TalkSDK.TalkCallData\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
       "kind": "IntegerLiteral",
       "offset": 879,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
       "kind": "IntegerLiteral",
       "offset": 951,
       "length": 7,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
-      "kind": "IntegerLiteral",
-      "offset": 879,
-      "length": 6,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsent.swift",
-      "kind": "IntegerLiteral",
-      "offset": 951,
-      "length": 7,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
       "kind": "IntegerLiteral",
       "offset": 620,
       "length": 4,
       "value": "3000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
       "kind": "IntegerLiteral",
       "offset": 649,
       "length": 4,
       "value": "3001"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
-      "kind": "IntegerLiteral",
-      "offset": 620,
-      "length": 4,
-      "value": "3000"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
-      "kind": "IntegerLiteral",
-      "offset": 649,
-      "length": 4,
-      "value": "3001"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
-      "kind": "IntegerLiteral",
-      "offset": 620,
-      "length": 4,
-      "value": "3000"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Extensions\/NSError+Extension.swift",
-      "kind": "IntegerLiteral",
-      "offset": 649,
-      "length": 4,
-      "value": "3001"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/AccessTokenService\/AccessTokenRequestBody.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/AccessTokenService\/AccessTokenRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 706,
       "length": 10,
       "value": "\"nickname\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/AccessTokenService\/AccessTokenRequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 706,
-      "length": 10,
-      "value": "\"nickname\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusService.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusService.swift",
       "kind": "StringLiteral",
       "offset": 661,
       "length": 46,
       "value": "\"\/api\/v2\/channels\/talk_embeddables\/sdk\/status\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
       "kind": "IntegerLiteral",
       "offset": 940,
       "length": 8,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
       "kind": "IntegerLiteral",
       "offset": 1021,
       "length": 7,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
-      "kind": "IntegerLiteral",
-      "offset": 940,
-      "length": 8,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Public\/RecordingConsentAnswer.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1021,
-      "length": 7,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallProvider\/TwilioProvider\/TwilioProvider.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallProvider\/TwilioProvider\/TwilioProvider.swift",
       "kind": "BooleanLiteral",
       "offset": 779,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/Other\/CallProvider\/TwilioProvider\/TwilioProvider.swift",
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
       "kind": "StringLiteral",
-      "offset": 638,
+      "offset": 708,
+      "length": 8,
+      "value": "\"opt_in\""
+    },
+    {
+      "filePath": "\/Users\/admin\/actions-runner\/_work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
+      "kind": "StringLiteral",
+      "offset": 739,
+      "length": 9,
+      "value": "\"opt_out\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 637,
+      "length": 19,
+      "value": "\"ActivityTintColor\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 791,
+      "length": 17,
+      "value": "\"ButtonBlueColor\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 969,
+      "length": 30,
+      "value": "\"ConsentSwitchBackgroundColor\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1145,
+      "length": 20,
+      "value": "\"SegmentDotSelected\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1315,
+      "length": 22,
+      "value": "\"SegmentDotUnselected\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1586,
+      "length": 19,
+      "value": "\"bluetoothOnButton\""
+    },
+    {
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1739,
       "length": 14,
-      "value": "\"TalkSDK.TwilioProvider\""
+      "value": "\"hangUpButton\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 708,
-      "length": 8,
-      "value": "\"opt_in\""
+      "offset": 1883,
+      "length": 12,
+      "value": "\"muteButton\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 739,
-      "length": 9,
-      "value": "\"opt_out\""
+      "offset": 2029,
+      "length": 14,
+      "value": "\"muteOnButton\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 708,
-      "length": 8,
-      "value": "\"opt_in\""
+      "offset": 2179,
+      "length": 15,
+      "value": "\"phoneOnButton\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/NetworkLayer\/LineStatusService\/LineStatusResponse.swift",
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 739,
-      "length": 9,
-      "value": "\"opt_out\""
+      "offset": 2330,
+      "length": 15,
+      "value": "\"speakerButton\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/zendesk_talk_sdk_ios\/zendesk_talk_sdk_ios\/TalkSDK\/TalkSDK\/Source\/UI\/CallConfigurationViewController\/CallConfigurationViewController.swift",
+      "filePath": "\/Users\/admin\/Library\/Developer\/Xcode\/DerivedData\/TalkSDK-gzhwbwrieaeydfgokgjaajsdvxud\/Build\/Intermediates.noindex\/ArchiveIntermediates\/TalkSDK\/IntermediateBuildFilesPath\/TalkSDK.build\/Release-iphonesimulator\/TalkSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 776,
-      "length": 31,
-      "value": "\"TalkSDK.CallConfigurationViewController\""
+      "offset": 2485,
+      "length": 17,
+      "value": "\"speakerOnButton\""
     }
   ]
 }

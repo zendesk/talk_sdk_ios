@@ -6,31 +6,31 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		JxqGHTvB8E+0JnLpSmQJLP0yZQk=
+		+BSJ3PhM+B0QymOceStfjVRtO9M=
 		</data>
 		<key>CallConfigurationViewController.nib</key>
 		<data>
-		YJlaUmLWtnv+E9B5iSV+xcC/m74=
+		7JM5jqSZsHHb6p0JjINqusq7ksM=
 		</data>
 		<key>CallScreenButtonsView.nib</key>
 		<data>
-		e1BSQhM/qr9elz3YuDqIkrQ/eNQ=
+		JwI0NiS3Fx44cxXR9s9LYwVcTSk=
 		</data>
 		<key>CallScreenLoadingView.nib</key>
 		<data>
-		WvXPlbhujoNrGHytzp0coWNYtJw=
+		n+SrHVgEUvcARysDiZI6xQgLTcA=
 		</data>
 		<key>CallScreenTimerView.nib</key>
 		<data>
-		rjLqwgxfLXB2pK73BY9YivbbfCI=
+		is068c3qyDEqwKqgPoNqyoxJJng=
 		</data>
 		<key>CallViewController.nib</key>
 		<data>
-		d64nMZtzWG8kfdSvdwlws2dnMMY=
+		smHM8nOAKFgllRlJoq70+AjR+jo=
 		</data>
 		<key>Headers/TalkSDK-Swift.h</key>
 		<data>
-		xQYB2v3Hn5Aa305+tqaYbAuIkKQ=
+		OVpZrbvvZyDkQHivm6DzBNoEMU0=
 		</data>
 		<key>Headers/TalkSDK.h</key>
 		<data>
@@ -38,63 +38,67 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		2xYyxHF8DqLAh34XtzeklolKmyo=
+		s78OLadaZHHduBtzu4m0v9LlzcE=
 		</data>
 		<key>MicrophonePermissionViewController.nib</key>
 		<data>
-		nXImbs9+F00xa6eS6B/T/73W/q8=
+		TAng88ZuRLXF0bkAIWJEgmsRndk=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		loQ6j1equAoXGm+EiZnrc+1akBI=
+		hIcRtDvho6TdZsmP8PUEDVCHHqk=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Z1lEgVNkKKdF/H9s4o4j0ZlD/jQ=
+		yOrowcECaY7X8yB90f7Z1uSxsQ0=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Mr4vv17jDtPrZhsQDa8ShDscMlk=
+		6+Xg5tsfHE7FMIl2pdah+trK7Rc=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Z1lEgVNkKKdF/H9s4o4j0ZlD/jQ=
+		yOrowcECaY7X8yB90f7Z1uSxsQ0=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		4TT/AbBwje13xbEL2bpr/mXBYRE=
+		kxzid47AsVCkPgukoo8GKT1BmPI=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		loQ6j1equAoXGm+EiZnrc+1akBI=
+		hIcRtDvho6TdZsmP8PUEDVCHHqk=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		tL76TEHW1G2UAEQpjkGXA5gJLeY=
+		O58aV39dOXla+dpYAyjUrRFk+GI=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		L8313Vq9GZqvR9B90/MSr6qQDkU=
+		IymN95ruvaQK8vZyoOMmXrj8wjc=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		tL76TEHW1G2UAEQpjkGXA5gJLeY=
+		O58aV39dOXla+dpYAyjUrRFk+GI=
 		</data>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		T6yn1qqkSUSiX+AblUTmXqk5Deg=
+		Q4XlgfDt/g92dhxtPDlVhhX95k8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		avDApC2Iz5EDDbMcf7S1NBUdIxY=
+		PyBOECmx7CiV6ZUteMuHsQJaXZk=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		jor92q85OlxCtH1O+H0EnieFlrQ=
 		</data>
 		<key>RecordingConsentViewController.nib</key>
 		<data>
-		32x2D+H8YP9IskKpIyjoWrRVacM=
+		HOlNtUu16o4frFsNNRtYQ8qP74E=
 		</data>
 		<key>TalkErrorView.nib</key>
 		<data>
-		9TUfaQvHueTcD5WempGCxLZsY7w=
+		MNXu+7LdF3STujLUJps7BkygNSk=
 		</data>
 		<key>ar.lproj/Localizable.strings</key>
 		<dict>
@@ -454,49 +458,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4ASfOnWz0QCHpfY4/jRsiq89WsVslMrqM81JhPqahyY=
+			PjbLO8WalXKMIF38Y7bR0D8FbxYNw9b0gH6+lHz2Wxk=
 			</data>
 		</dict>
 		<key>CallConfigurationViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			l40q1pmJEhBGYCeF+Zy/HVLCBpF3lao426MUlVX4dTI=
+			6vKRj694CWFMzcPHCYetgKyGlJMeO4zbjvV8mPTgy/c=
 			</data>
 		</dict>
 		<key>CallScreenButtonsView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CTpf4x/J1W7cO6GAZCF/yHLHe3sGlkQH50NGBIkFdrY=
+			EX9vj1muC+31gczR3DgGuL0eoUzM9S3dkIJK9H8ogzM=
 			</data>
 		</dict>
 		<key>CallScreenLoadingView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uGfsU6LUEqqJB5SDDiZiFhC+MxoKAon7pxa8WlAR6j0=
+			tLpRhVEsav5Ah+s0Pffg7wVYuhqraWi031D+s7LupQY=
 			</data>
 		</dict>
 		<key>CallScreenTimerView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/LDf6stYRx82Ho49hR4vCduoRHhduUYYl9D8bPL8wro=
+			wmMi6PRP9vNon6VgsPWeesm1aOPBvoigvXxStQbSWjY=
 			</data>
 		</dict>
 		<key>CallViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aWlSyVSQDRz8MAh82M0S2goNpZuUcq3IRsMbDJNXYjE=
+			kzcQXSpwI+7pQsrYhGDQU3tVaXvq067Rvagfn+FAjPQ=
 			</data>
 		</dict>
 		<key>Headers/TalkSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NLCHbLUgYErjCUCRw2rlnymk3O9EfEd/ioQrc1/wZtk=
+			7w0PgHjVgdImZNd9gNW/+OiwJmkJdzWfaEpS2g4dAVQ=
 			</data>
 		</dict>
 		<key>Headers/TalkSDK.h</key>
@@ -510,98 +514,105 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Pf7I6HLWlX9ZYK5GMUAY6MCGnMNMiiyWXhyruW7VlvU=
+			TElRMOaCnWN50ircu8CKcxgA7m+/o/2JRJfuO7ONDaU=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/KLIaMCknMNSrD5m/jxP7Fo629Go6YGD8FDQQ2TmoOk=
+			4b78eLXcqiEHLQeOOkLoZP/py4IWWIOngEkHUSaiYhk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qjmZs/o3r1bSUw/rbijRErPT3GAbadNH/Pj6JdA756g=
+			hAjfH49Xlqi6QSTCL/1NPRqYchA+4QjobS7rNLkfmVw=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ISi0Zuvq7zDXJqIFwy9a7arrUJqZnMt+C8Y4x8Awu/s=
+			JAnPl6wnZY8pnn2VzXrZjT3YzT3K3qNyyvZPCWlh1Vs=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qjmZs/o3r1bSUw/rbijRErPT3GAbadNH/Pj6JdA756g=
+			hAjfH49Xlqi6QSTCL/1NPRqYchA+4QjobS7rNLkfmVw=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JhGaOw4AjJicIqX0NvZBw4J7iT/k7i3F4tLcetjXFPI=
+			xiJeQLBkee2EEmM29/RdNGmKnHABUrHKh9M6AounHMw=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/KLIaMCknMNSrD5m/jxP7Fo629Go6YGD8FDQQ2TmoOk=
+			4b78eLXcqiEHLQeOOkLoZP/py4IWWIOngEkHUSaiYhk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qFPOfNq0z7X6IZzfe8IU+uzwgZhYmZs94+kLv8+wCzY=
+			oecH3Zfo43Kah93qnUyoseIP+8RWaudFuhvRs9uoUPk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			85WeOYJIhzUHA5osgpmnD7HWfJG5a5ICq5iLfqjVhto=
+			YPx3n24YQC19hvFegeOnKZc1p3mU8JW86ynmLfYhSiE=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qFPOfNq0z7X6IZzfe8IU+uzwgZhYmZs94+kLv8+wCzY=
+			oecH3Zfo43Kah93qnUyoseIP+8RWaudFuhvRs9uoUPk=
 			</data>
 		</dict>
 		<key>Modules/TalkSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nswH91gZgr2ttEOk/zDmltUPB+yDQzvCWRIbJ98oc+M=
+			p1pKtcOSSORHzeQwgOD5udIxhpAxRE0VEp3RKCnbjpg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SbNGqQFctzO1U6dm0lYK5ed1KGM5QauG/lZuqTwXgRQ=
+			vyIRqZclX6gNxP5HFkt/EMctWxz8c8psghtHGmQ/1NQ=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BHuH5cKJGdrhx564OCRyGTsLhzRINMvjGw/T4VfdrF8=
 			</data>
 		</dict>
 		<key>RecordingConsentViewController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kgFcoYpKZ0QvBhJC+PZy0CgsRgQQI9MQbXp9iEE1VhM=
+			ZRprMDJKFwvgqhLhSPaLYVQEuY80K0FqrD6xaGLy1nw=
 			</data>
 		</dict>
 		<key>TalkErrorView.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qKoELcAfX6jFXR4h8v9Qo6+MCiD5I35QoCyCcjIIojw=
+			FpvajjGqtQhYZWJMrH/dZkx8t3diOVhph6yNYyQqS+Q=
 			</data>
 		</dict>
 		<key>ar.lproj/Localizable.strings</key>
