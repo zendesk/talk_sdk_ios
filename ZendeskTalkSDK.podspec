@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ZendeskTalkSDK"
-  s.version      = "3.1.0"
+  s.version      = "3.1.1"
   s.summary      = "ZendeskTalkSDK #{s.version.to_s}"
   s.homepage     = "https://developer.zendesk.com/embeddables"
   s.license      = {
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.cocoapods_version = '>= 1.10.0'
   s.source       = { :git => "https://github.com/zendesk/talk_sdk_ios.git", :tag => s.version }
   s.vendored_frameworks = 'TalkSDK.xcframework'
-  s.dependency 'ZendeskCoreSDK', '2.5.1'
-  s.dependency 'TwilioVoice', '6.9.1'
+  s.dependency 'ZendeskCoreSDK', '5.0.3'
+  s.dependency 'TwilioVoice', '6.11.3'
 end
